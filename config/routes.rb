@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #本当はroot to:'products#index'まず最初にプロダクトの一覧を表示する。だけど一旦productsを作るまでは以下のようにする
+  root to: 'users#index'
+  
+  get 'signup' ,to: 'users#new'
+  resources :users, only: [:index, :show, :create,:edit,:update]
+
 end

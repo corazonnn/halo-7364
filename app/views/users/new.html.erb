@@ -1,0 +1,44 @@
+<div id="home" class="big-bg">
+  <div class="text-center">
+    <div class="first-message">集まれ、プログラミング初学者</div>
+    <div class="second-message">アカウント登録</div>
+  </div>
+  <div class="container"
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+    
+        <%= form_with(model: @user, local: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group mt-4">
+            <%= f.label :username, 'Username' %>
+            <%= f.text_field :username, class: 'form-control' %>
+            <small class="small-comment">※名前は後から変更できます</small>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :email, 'Email' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :password, 'Password' %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :password_confirmation, 'Password(確認用)' %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+          <div class="text-center mt-5">
+            <%= f.submit 'アカウント登録', class: 'btn btn-success' %>
+          </div>
+          
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+

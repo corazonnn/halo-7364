@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3><%= @user.username %></h3>
+                </div>
+                <div class="card-body">
+                    <p><%= @user.language %></p>
+                    <p><%= @user.introduction %></p>
+                </div>
+            </div>
+            <%= link_to '一覧に戻る',users_path %>
+        </div>
+    
+        <div class="col-sm-7">プロダクト一覧</div>
+    </div>
+</div>
+
+
+
+
+
+

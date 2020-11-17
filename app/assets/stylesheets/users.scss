@@ -1,0 +1,41 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user_card{
+  /*いる？？*/
+    display:inline-block;
+}
+
+.navbar{
+    height:80px;
+}
+
+.big-bg{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center top;
+    padding-top:40px;
+}
+
+#home{
+  height:800px;
+  background-image:image-url('home.jpg')
+}
+
+.form-group,.first-message,.second-message{
+  color:#fff;
+}
+.first-message{
+  font-size:70px;
+}
+.second-message{
+  font-size:40px;
+  padding-top:30px;
+}
+
+#nav-bar{
+  z-index:1000;
+}
+
+
+

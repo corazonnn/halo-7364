@@ -25,3 +25,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#アイコンの情報はバージョン管理する必要はないから予め無視するように設定しておく
+/public/uploads/*

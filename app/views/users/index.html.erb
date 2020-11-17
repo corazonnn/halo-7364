@@ -1,0 +1,36 @@
+<!--ユーザが横にできない！！！！-->
+
+<% if @users.any? %>
+  <h1>ユーザリスト</h1>
+  <div class="profile_list">
+    <div class="container">
+      <div class="row">
+        
+        
+       <!--rowのすぐ下にしなきゃいけない-->
+          <% @users.each do |user| %>
+          <div class="col-md-3">
+            <div class="card">
+              <!--ここでやる-->
+              
+                <div class="card-header">
+                  プロフィール画像
+                </div>
+                <div class="card-body">
+                  <p><%= user.username %></p>
+                  <p><%= user.language %></p>
+                  <p><%= link_to("詳細", user_path(user), { class: " btn btn-outline-secondary"}) %></p>
+                </div>
+              </div>
+                
+              </div>
+                
+          <% end %>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  <%= paginate @users %>
+<% end %>
