@@ -1,19 +1,32 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-5">
-            <div class="card">
-                <div class="card-header">
-                    <h3><%= @user.username %></h3>
-                </div>
-                <div class="card-body">
-                    <p><%= @user.language %></p>
-                    <p><%= @user.introduction %></p>
-                </div>
+        <div class="col-sm-5 text-center">
+            <h1 class="pl-5 mt-3 mb-4 p-4">プロフィール</h1>
+            <div class="card-deck">
+            <div class="card mb-5">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+              <div class="card-body">
+                <small class="border-bottom">ユーザー名</small>
+                <h3><%= @user.username %></h3>
+                <p><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
+                <small class="border-bottom">使用言語</small>
+                <h5><%= @user.language %></h5>
+                <small class="border-bottom">自己紹介</small>
+                <h5><%= @user.introduction %></h5>
+              </div>
+              <div class="text-right">
+                <p class=" mb-0"><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
+              </div>
             </div>
-            <%= link_to '一覧に戻る',users_path %>
+            
+            </div>
+            
+        </div>   
+        <div class="pl-5 mt-3 mb-4 p-4 col-sm-7 text-center">
+            <h1 >プロダクト一覧</h1>
         </div>
-    
-        <div class="col-sm-7">プロダクト一覧</div>
+        
+        
     </div>
 </div>
 

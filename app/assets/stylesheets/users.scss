@@ -37,5 +37,27 @@
   z-index:1000;
 }
 
+.card-header{
+  float:left;
+}
 
+#edit-username{
+  color:#000;
+}
 
+//横並びできたーーーーーーーーーーーーーーーーーーーー(edit.html.erb)
+.return-button p{
+  display:inline-block;
+}
+
+//ここからindex.html.erb
+#user-chart{
+  height:1200px;
+  background-image:image-url('index.jpg')
+}
+
+#user-list-mozi{
+  color:#fff;
+  font-weight: bold
+}
+//ここまで
