@@ -4,7 +4,10 @@
             <h1 class="pl-5 mt-3 mb-4 p-4">プロフィール</h1>
             <div class="card-deck">
             <div class="card mb-5">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+              <p>
+                <!--<strong>Image:</strong>-->
+                <%= image_tag @user.image.url if @user.image? %>
+              </p>
               <div class="card-body">
                 <small class="border-bottom">ユーザー名</small>
                 <h3><%= @user.username %></h3>
