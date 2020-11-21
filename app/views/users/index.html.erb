@@ -1,9 +1,9 @@
 <!--logged_in?が反応してない？なんで-->
 <% if logged_in? %>
   <p> <%= current_user.username %>がログイン中</p>
-  <%= render 'layouts/toppage' %>
+  <%= render 'layouts/userlist' %>
 <% else %>
   <p>ログインしていません。</p>
-  <%= render 'layouts/toppage' %>
+  <%= render 'layouts/userlist' %>
 <% end %>
 

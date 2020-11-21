@@ -1,0 +1,44 @@
+<div id="product-chart" class="big-bg">
+  <% if @products.any? %>
+    <h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">みんなのアウトプット</h1>
+    
+    <p class="text-center mb-5"><%= link_to('新規作成',new_product_path,{ class: "btn btn-outline-primary"})  %></p>
+    <div class="profile_list">
+      <div class="container">
+        <div class="row">
+          
+          
+         <!--rowのすぐ下にしなきゃいけない-->
+            <% @products.each do |product| %>
+              <div class="col-md-3 mb-3 text-center">
+                <div class="card mb-5">
+                  <div class="card-header">
+                    <small class="border-bottom">タイトル</small>
+                    <h5><%= product.title %></h5>
+                    </div>
+                  <div class="card-body">
+                    <small class="border-bottom">作成者</small>
+                    <h5 class="card-text"><%= product.user.username  %></h5>
+                    <small class="border-bottom">使用言語</small>
+                    <p class="card-text"><%=  product.language %></p>
+                    <p><%= link_to("詳細", product_path(product), { class: " btn btn-primary"}) %></p>
+                  </div>
+                  
+                  
+                  <div class="card-footer text-muted">
+                    <%= product.created_at.strftime("%Y年%m月%d日")  %>
+                  </div>
+                
+                
+                </div>
+              </div>
+            <% end %>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center"><%= paginate @products %></div>
+  <% end %>
+</div>

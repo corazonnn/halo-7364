@@ -1,0 +1,43 @@
+<h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">プロダクト詳細</h1>
+<div class="product_show">
+  <div class="container">
+    <div class="row">
+      
+      
+     <!--rowのすぐ下にしなきゃいけない-->
+        
+          <div class="col-md-6 offset-md-3 mb-3 text-center">
+            <div class="card mb-5">
+              <div class="card-header">
+                <small class="border-bottom">タイトル</small>
+                <h5><%= @product.title %></h5>
+                </div>
+              <div class="card-body">
+                <small class="border-bottom">作成者</small>
+                <h5 class="card-text"><%= @product.user.username  %></h5>
+                <small class="border-bottom">使用言語</small>
+                <p class="card-text"><%=  @product.language %></p>
+                <small class="border-bottom">作成期間</small>
+                <h5 class="card-text"><%= @product.period  %></h5>
+                <small class="border-bottom">概要</small>
+                <h5 class="card-text"><%= @product.detail  %></h5>
+                
+                
+                
+                <% if current_user==@product.user %>
+                  <!--もし現在のユーザーとこの操作をしている人が同じなら-->
+                  <%= link_to("編集", edit_product_path(@product),class: " btn btn-warning") %>
+                  <%= link_to("削除", product_path(@product), method: :delete, class: "btn btn-danger") %>
+                <% end %>
+                <p class="pt-3"><%= link_to("一覧に戻る", root_path, { class: " btn btn-primary"}) %></p>
+              </div>
+              <div class="card-footer text-muted">
+                <%= @product.created_at.strftime("%Y年%m月%d日")  %>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+    
+    

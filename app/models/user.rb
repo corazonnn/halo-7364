@@ -4,8 +4,9 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { maximum: 50 }
   
   #これを書いちゃうとユーザ登録時に必要とされちゃうから一旦外してみる→やっぱりそうだ！
-  #validates :language, presence: true, length: { maximum: 50 }
-  #validates :introduction, presence: true, length: { maximum: 280 }
+  #presence:true書かなきゃいいだけじゃない？？
+  validates :language, length: { maximum: 50 }
+  validates :introduction, length: { maximum: 280 }
   
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
@@ -16,4 +17,10 @@ class User < ApplicationRecord
   
   has_secure_password
     
+    
+  has_many :products
+  #中間テーブルをたくさん持ってる
+  has_many :goods
+  #中間テーブルを通して、その奥のプロダクトをたくさん持ってる
+  has_many :products, through: :goods
 end

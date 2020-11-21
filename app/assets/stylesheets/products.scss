@@ -1,0 +1,22 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//ここからindex.html.erb
+#product-chart{
+  height:800px;
+  background-image:image-url('product1.jpg')
+}
+
+#product-list-mozi{
+  color:#000;
+  font-weight: bold
+}
+//ここまで
+
+//ここから　new.htwml.erb(プロダクトの新規作成)
+#new-product{
+  color:#000;
+}
+
+//

@@ -1,0 +1,44 @@
+<h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">プロダクト編集</h1>
+<div class="product_show">
+  <div class="container">
+    <div class="row">
+      
+      
+     <!--rowのすぐ下にしなきゃいけない-->
+        
+          <div class="col-md-6 offset-md-3 mb-3 text-center">
+            <div class="card mb-5">
+              <div class="card-header">
+                <small class="border-bottom">作成者</small>
+                <h5 class="card-text"><%= @product.user.username  %></h5>
+                </div>
+              <div class="card-body">
+                <%= form_with(model: @product,method: :put,local: true) do |f| %>
+              　  <!--POSTで送るときはからなずエラーメッセージの表示をする-->
+                  <%= render 'layouts/error_messages', model: f.object %>
+                  <div class="form-group">
+                    <%= f.label :title, 'タイトル' %>
+                    <%= f.text_field :title, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :language, '使用言語' %>
+                    <%= f.text_field :language, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :period, ' 作成期間' %>
+                    <%= f.text_field :period, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :detail, '概要' %>
+                    <%= f.text_field :detail, class: 'form-control' %>
+                  </div>
+                  <%= f.submit '更新',class: "btn btn-success"%>
+                <% end %>
+                <p class="pt-3"><%= link_to("一覧に戻る", root_path, { class: " btn btn-primary"}) %></p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+    
