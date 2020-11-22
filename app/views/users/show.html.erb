@@ -11,7 +11,12 @@
               <div class="card-body">
                 <small class="border-bottom">ユーザー名</small>
                 <h3><%= @user.username %></h3>
-                <p><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
+                
+                <% if @user==current_user %>
+                  <p><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
+                <% else %>
+                <% end %>
+                
                 <small class="border-bottom">使用言語</small>
                 <h5><%= @user.language %></h5>
                 <small class="border-bottom">自己紹介</small>

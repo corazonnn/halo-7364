@@ -11,5 +11,5 @@ class Product < ApplicationRecord
   #中間テーブルをたくさん持っている
   has_many :goods
   #中間テーブルを通して、その奥のプロダクトをたくさん持ってる
-  has_many :users, through: :goods
+  has_many :amazings, through: :goods, source: :product
 end

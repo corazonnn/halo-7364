@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #logged_in?はview用にlhelperで定義されたものだからcontrollerでは使えない。だからincludeする必要がある
+  #logged_in?とcurrent_userはview用にlhelperで定義されたものだからcontrollerでは使えない。だからincludeする必要がある
   include SessionsHelper
   
   
@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  #ユーザの「頑張ったね！」した数を数える
+  def counts(user)
+    @count_goods=user.goods.count
+  end
+  
+  def counted(product)
+    @counted_goods=product.goods.count
+  end
+  
 end

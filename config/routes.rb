@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #本当はroot to:'products#index'まず最初にプロダクトの一覧を表示する。だけど一旦productsを作るまでは以下のようにする
+  
   root to: 'products#index'
   
   get 'login', to: 'sessions#new'
@@ -8,7 +8,17 @@ Rails.application.routes.draw do
   
   
   get 'signup' ,to: 'users#new'
-  resources :users, only: [:index, :show, :create,:edit,:update]
+  resources :users, only: [:index, :show, :create,:edit,:update] do
+    member do
+      get :nices
+    end 
+    
+  end
   resources :products
+  
+  
+  #ユーザが「頑張ったね！」できるようにルーティングしていく
+  resources :goods, only:[:create,:destroy]
+  
   
 end

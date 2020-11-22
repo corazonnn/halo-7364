@@ -42,6 +42,13 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  #userモデルファイルのmemberの中
+  #これはユーザの「頑張ったね！」した一覧を表示するためのものだが今現時点では必要ない
+  def nices
+  end
+  
+  
   private
   #画像投稿用のメソッド
   def set_user

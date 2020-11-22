@@ -22,5 +22,30 @@ class User < ApplicationRecord
   #中間テーブルをたくさん持ってる
   has_many :goods
   #中間テーブルを通して、その奥のプロダクトをたくさん持ってる
-  has_many :products, through: :goods
+  has_many :amazings, through: :goods, source: :product
+  
+  
+  def nice(any_product)
+    #userがniceを押したらそのuserのgoodsテーブルにそのproduct追加する.0→→→1
+    self.goods.find_or_create_by(product_id: any_product.id)
+  end
+  
+  
+  def unnice(any_product)
+    #destroyは単体のレシーバーに対して削除するメソッドだから
+    good = self.goods.find_by(product_id: any_product.id)
+    good.destroy if good
+  end
+  
+  
+  def nice?(any_product)
+    #現在のユーザのgoodsの中に対象のproductがあればtrueを返す。それ以外はfalseにする。
+    if self.goods.find_by(product_id: any_product.id)
+      true
+    else
+      false
+    end
+  end
+  
+  
 end

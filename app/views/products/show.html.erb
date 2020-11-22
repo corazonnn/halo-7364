@@ -26,6 +26,8 @@
                 
                 <% if current_user==@product.user %>
                   <!--もし現在のユーザーとこの操作をしている人が同じなら-->
+                  
+                  <!--ここでエラーがでる！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！-->
                   <%= link_to("編集", edit_product_path(@product),class: " btn btn-warning") %>
                   <%= link_to("削除", product_path(@product), method: :delete, class: "btn btn-danger") %>
                 <% end %>

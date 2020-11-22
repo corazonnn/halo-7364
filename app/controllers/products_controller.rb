@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
     @product = current_user.products.build
   end
 
+
   def edit
     @product=current_user.products.find(params[:id])
   end
