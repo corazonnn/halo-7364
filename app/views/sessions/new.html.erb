@@ -3,7 +3,7 @@
     <div class="first-message-login">集まれ、プログラミング初学者</div>
     <div class="second-message-login">ログイン</div>
   </div>
-  <div class="container"
+  <div class="container">
     <div class="row">
       <div class="col-sm-6 offset-sm-3">
         <!--ナビバーからGETで表示しているこのページからformでPOSTでsessions#createに送る-->
@@ -24,7 +24,7 @@
           
         <% end %>
     
-      <p><%= link_to( 'アカウント登録してない人はこちら', signup_path ,{class: "btn btn-warning"})%></p>
+      <p class="text-center"><%= link_to( 'アカウント登録してない人はこちら', signup_path ,{class: "btn btn-warning"})%></p>
     
     
       </div>

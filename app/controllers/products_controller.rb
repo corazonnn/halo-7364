@@ -53,6 +53,10 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    
+    #このプロダクト詳細ページでコメントの作成、表示を行うから全コメントの取得、コメントモデルのインスタンスの生成
+    @comments = @product.comments.order(id: :desc).page(params[:page]).per(6)
+    @comment = current_user.comments.new
   end
   
   private

@@ -81,7 +81,7 @@
 //ここからindex.html.erb
 #user-chart{
   height:800px;
-  background-image:image-url('index.jpg')
+  background-image:image-url('userlist.jpg')
 }
 
 #user-list-mozi{
@@ -110,3 +110,15 @@
   padding-top:30px;
 }
 //ここまで
+
+.icon {
+  width: 130px;
+  height: 130px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+#user-show-name{
+  display:flex;
+  vertical-align: middle;
+}

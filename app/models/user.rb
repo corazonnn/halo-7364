@@ -20,9 +20,11 @@ class User < ApplicationRecord
     
   has_many :products
   #中間テーブルをたくさん持ってる
-  has_many :goods
-  #中間テーブルを通して、その奥のプロダクトをたくさん持ってる
-  has_many :amazings, through: :goods, source: :product
+  has_many :goods, dependent: :destroy
+  
+  
+  
+  has_many :comments, dependent: :destroy
   
   
   def nice(any_product)

@@ -8,17 +8,13 @@ Rails.application.routes.draw do
   
   
   get 'signup' ,to: 'users#new'
-  resources :users, only: [:index, :show, :create,:edit,:update] do
-    member do
-      get :nices
-    end 
-    
-  end
+  resources :users, only: [:index, :show, :create,:edit,:update] 
+   
   resources :products
   
   
   #ユーザが「頑張ったね！」できるようにルーティングしていく
   resources :goods, only:[:create,:destroy]
   
-  
+  resources :comments, only:[:create,:destroy]
 end

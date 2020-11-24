@@ -13,12 +13,12 @@
                 <div class="card-deck">
                   <div class="card mb-5">
                     <!--表示方法#######################################################-->
-                    <p>
+                    <p class="mb-0 pb-0">
                       <!--<strong>Image:</strong>-->
-                      <%= image_tag user.image.url if user.image? %>
+                      <%= image_tag( user.image.url,class: 'icon') if user.image? %>
                     </p>
                     
-                    <div class="card-body">
+                    <div class="card-body pb-0 pb-0">
                       <small class="border-bottom">ユーザー名</small>
                       <h3><%= user.username %></h3>
                       <small class="border-bottom">使用言語</small>

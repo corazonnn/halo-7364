@@ -9,7 +9,12 @@ class Product < ApplicationRecord
   #あとはimageについて書くだけ。それ以外はできた
   
   #中間テーブルをたくさん持っている
-  has_many :goods
-  #中間テーブルを通して、その奥のプロダクトをたくさん持ってる
-  has_many :amazings, through: :goods, source: :product
+  #dependent: :destroyをつけると「いいね」をもらったものも消せる
+  has_many :goods, dependent: :destroy
+  
+  
+  
+  
+  has_many :comments, dependent: :destroy
+  
 end

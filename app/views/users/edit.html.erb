@@ -1,46 +1,44 @@
-<h1 class="pl-5 mt-3 mb-4 p-4">プロフィール編集ページ</h1>
-
-<%= form_with(model: @user,local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card-deck">
-        <div class="card mb-5">
-          <!--入力フォーム#########################################################################-->
-          <%= f.label :画像 %><br />
-          <%= f.file_field :image %>
-          <div id="edit-button" class="mb-3 mt-2 text-center">
-            <%= f.submit 'アイコンを更新', class: 'btn btn-warning'%>
-          </div>
-          
-          
-          
-          <div class="card-body">
-            <%= f.label :username,'名前' %>
-            <%= f.text_field :username, class: 'form-control' %>
-            <%= f.label :language,'使用言語' %>
-            <%= f.text_field :language, class: 'form-control' %>
-            <%= f.label :introduction,'自己紹介' %>
-            <%= f.text_field :introduction, class: 'form-control' %>
-            <div id="save-button" class="mb-3 mt-2 text-center">
-              <%= f.submit '保存', class: 'btn btn-success' %>
-            </div>
-            <div class="return-button text-center">
-              <p><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
-              <p><%= link_to( '詳細に戻る',user_path(@user) ,{class: "btn btn-outline-warning"})%></p>
+<div id="user-chart" class="big-bg">
+  <h1 class="pl-5 mt-3 mb-4 p-4" id="user-list-mozi">プロフィール編集ページ</h1>
+  <%= form_with(model: @user,local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card-deck">
+          <div class="card mb-5">
+            <!--入力フォーム#########################################################################-->
+            <%= f.label :画像 %><br />
+            <%= f.file_field :image %>
+            <div id="edit-button" class="mb-3 mt-2 text-center">
+              <%= f.submit 'アイコンを更新', class: 'btn btn-warning'%>
             </div>
             
+            
+            
+            <div class="card-body">
+              <%= f.label :username,'名前' %>
+              <%= f.text_field :username, class: 'form-control' %>
+              <%= f.label :language,'使用言語' %>
+              <%= f.text_field :language, class: 'form-control' %>
+              <%= f.label :introduction,'自己紹介' %>
+              <%= f.text_field :introduction, class: 'form-control' %>
+              <div id="save-button" class="mb-3 mt-2 text-center">
+                <%= f.submit '保存', class: 'btn btn-success' %>
+              </div>
+              <div class="return-button text-center">
+                <p><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
+                <p><%= link_to( '詳細に戻る',user_path(@user) ,{class: "btn btn-outline-warning"})%></p>
+              </div>
+              
+            </div>
           </div>
         </div>
-      </div>
-</div>
-
   </div>
-<% end %>
-
+  
+    </div>
+  <% end %>
+</div>
 <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>-->
 
     

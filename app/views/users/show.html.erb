@@ -1,41 +1,49 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5 text-center">
-            <h1 class="pl-5 mt-3 mb-4 p-4">プロフィール</h1>
-            <div class="card-deck">
-            <div class="card mb-5">
-              <p>
-                <!--<strong>Image:</strong>-->
-                <%= image_tag @user.image.url if @user.image? %>
-              </p>
-              <div class="card-body">
-                <small class="border-bottom">ユーザー名</small>
-                <h3><%= @user.username %></h3>
-                
-                <% if @user==current_user %>
-                  <p><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
-                <% else %>
-                <% end %>
-                
-                <small class="border-bottom">使用言語</small>
-                <h5><%= @user.language %></h5>
-                <small class="border-bottom">自己紹介</small>
-                <h5><%= @user.introduction %></h5>
+<div id="user-chart" class="big-bg">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-5 text-center">
+              <h1 class="pl-5 mt-3 mb-4 p-4" >プロフィール</h1>
+              <div class="card-deck">
+                <div class="card mb-5">
+                  <p>
+                    <!--<strong>Image:</strong>-->
+                    
+                    <%= image_tag( @user.image.url,class: 'icon') if @user.image? %>
+                  </p>
+                  <div class="card-body">
+                    
+                    <div class="justify-content-center" id="user-show-name">
+                      <div class="ml-5 pl-4">
+                        <small class="border-bottom">ユーザー名</small>
+                        <h3><%= @user.username %></h3>
+                      </div>
+
+                      <% if @user==current_user %>
+                        <p class="mt-4 ml-3"><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
+                      <% else %>
+                         <p class="mt-4 ml-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> 
+                      <% end %>
+                    </div>
+ 
+                    <small class="border-bottom">使用言語</small>
+                    <p><%= @user.language %></p>
+                    <small class="border-bottom">自己紹介</small>
+                    <p><%= @user.introduction %></p>
+                  </div>
+                  
+                  <div class="text-right">
+                    <p class=" mb-0"><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
+                  </div>
+                </div>
               </div>
-              <div class="text-right">
-                <p class=" mb-0"><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
-              </div>
-            </div>
-            
-            </div>
-            
-        </div>   
-        <div class="pl-5 mt-3 mb-4 p-4 col-sm-7 text-center">
-            <h1 >プロダクト一覧</h1>
-        </div>
-        
-        
-    </div>
+          </div>   
+          
+          <div class="pl-5 mt-3 mb-4 p-4 col-sm-7 text-center">
+              <h1 class="mb-5">プロダクト一覧</h1>
+              <%= render 'layouts/product-list' ,user: @user %>
+          </div>
+      </div>
+  </div>
 </div>
 
 
