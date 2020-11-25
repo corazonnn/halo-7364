@@ -28,9 +28,9 @@
                         
                         
                         <% if product.user.image? %>
-                          <%= image_tag( product.user.image.url,class: 'icon-product-page') %>
+                          <%= image_tag( product.user.image.url, class: 'icon-product-page') %>
                         <% else %>
-                          <%= image_tag("default_icon.png",class: 'icon-product-page')   %>
+                          <%= image_tag("default_icon.png", class: 'icon-product-page')   %>
                         <% end %>
                         
                         <%= link_to user_path(product.user) do %>

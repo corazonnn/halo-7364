@@ -3,11 +3,17 @@ class UserUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   
-  include Cloudinary::CarrierWave
+  if Rails.env.production?
+    include Cloudinary::CarrierWave
+  else
+    #rails内に保存する
+    storage :file
+  end
+  
   
   
   # Choose what kind of storage to use for this uploader:
-  storage :file
+ 
   # storage :fog
 
   # Override the directory where uploaded files will be stored.

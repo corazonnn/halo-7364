@@ -65,14 +65,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 
 #画像投稿
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 
 #画像のリサイズ
 gem 'mini_magick'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
+  gem 'cloudinary' , '1.11.1'
 end
-
-gem 'cloudinary' , '1.11.1'
 
