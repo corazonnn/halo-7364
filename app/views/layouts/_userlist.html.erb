@@ -16,7 +16,12 @@
                       <!--表示方法#######################################################-->
                       <p class="mb-0 pb-0">
                         <!--<strong>Image:</strong>-->
-                        <%= image_tag( user.image.url,class: 'icon') if user.image? %>
+                        <% if user.image? %>
+                        <%= image_tag( user.image.url,class: 'icon') %>
+                        <% else %>
+                        <%= image_tag("default_icon.png",class: 'icon')   %>
+                        <% end %>
+                        
                       </p>
                       
                       <div class="card-body pb-0 pb-0">

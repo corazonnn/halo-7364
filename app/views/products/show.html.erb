@@ -19,9 +19,16 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-md-6">
-                        <%= image_tag( @product.user.image.url,class: 'icon-product-show-page') if @product.user.image? %>
                         
-                        <h5 class="card-text"><%= @product.user.username  %></h5>
+                      
+                        <% if @product.user.image? %>
+                          <%= image_tag( @product.user.image.url,class: 'icon-product-page') %>
+                        <% else %>
+                          <%= image_tag("default_icon.png",class: 'icon-product-page')   %>
+                        <% end %>
+                        
+                        
+                        <h4 class="card-text mt-2"><%= @product.user.username  %></h4>
                       </div>
                       <div class="col-md-6 mb-4">
                         <small class="border-bottom">使用言語</small>
@@ -48,7 +55,7 @@
                     <% if current_user==@product.user %>
                       <!--もし現在のユーザーとこの操作をしている人が同じなら-->
                       <h5 class="mb-0"><%= link_to("編集", edit_product_path(@product),class: " btn btn-warning  pt-1 pb-1 pr-3 pl-3") %></h5>
-                      <h5 class="mb-0"><%= link_to("削除", product_path(@product), method: :delete, class: "btn btn-danger  pt-1 pb-1 pr-3 pl-3") %></h5>
+                      <h5 class="mb-0"><%= link_to("削除", product_path(@product), method: :delete, data: { confirm: '本当に削除しますか？' } , class: "btn btn-danger  pt-1 pb-1 pr-3 pl-3") %></h5>
                       
                     <% end %>
                     <p><%= link_to("一覧に戻る", root_path, { class: " btn btn-primary  pt-1 pb-1 pr-3 pl-3"}) %></p>
@@ -100,7 +107,7 @@
                                       <div class="col-md-9 p-0"><%= comment.created_at.strftime("%m-%d  %H:%M")  %></div>
                                       <div class="col-md-3 p-0">
                                         <% if current_user.id == comment.user.id %>
-                                          <%= form_with(model: current_user.comments.find(comment.id) ,local: true, method: :delete,class: "form-inline") do |f| %>
+                                          <%= form_with(model: current_user.comments.find(comment.id) ,local: true, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "form-inline") do |f| %>
                                             <%= hidden_field_tag :comment_id, comment.id %>
                                             <%= button_tag :type => "submit", :class =>"btn btn-danger pt-0 pb-0 pr-0 pl-0" do %>
                                               <small>削除</small>

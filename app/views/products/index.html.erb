@@ -1,3 +1,8 @@
+<% if logged_in? %>
+  <div class="d-flex justify-content-center"><%= current_user.username %>さんがログイン中</div>
+<% else %>
+  <div class="d-flex justify-content-center">ログインしていません。</div>
+<% end %>
 <div id="product-chart" class="big-bg">
   
   <h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">みんなのアウトプット</h1>
@@ -20,7 +25,14 @@
                     <div class="card-body p-2">
                       <div class="d-flex justify-content-center">
                       
-                        <%= image_tag( product.user.image.url,class: 'icon-product-page') if product.user.image? %>
+                        
+                        
+                        <% if product.user.image? %>
+                          <%= image_tag( product.user.image.url,class: 'icon-product-page') %>
+                        <% else %>
+                          <%= image_tag("default_icon.png",class: 'icon-product-page')   %>
+                        <% end %>
+                        
                         <%= link_to user_path(product.user) do %>
                         
                       </div>  

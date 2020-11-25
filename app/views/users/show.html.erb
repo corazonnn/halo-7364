@@ -8,7 +8,12 @@
                   <p>
                     <!--<strong>Image:</strong>-->
                     
-                    <%= image_tag( @user.image.url,class: 'icon') if @user.image? %>
+                    
+                    <% if @user.image? %>
+                      <%= image_tag( @user.image.url,class: 'icon') %>
+                    <% else %>
+                      <%= image_tag("default_icon.png",class: 'icon')   %>
+                    <% end %>
                   </p>
                   <div class="card-body">
                     

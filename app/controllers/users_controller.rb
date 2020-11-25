@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show,:edit]
   #userを一覧表示する
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(4)
+    @users = User.order(id: :desc).page(params[:page]).per(8)
   end
 
   def show
@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   def create
   #明日はここから！登録ができない！！！！→できた！！！
     @user=User.new(user_params)
+    #最初はデフォルトのアイコンを入れておく
+    #できなかった涙涙涙@user.image="default_icon.png"
     if @user.save
       flash[:success]="アカウント登録に成功しました。"
       redirect_to @user

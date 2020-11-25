@@ -28,3 +28,5 @@
 
 #アイコンの情報はバージョン管理する必要はないから予め無視するように設定しておく
 /public/uploads/*
+
+/config/cloudinary.yml
