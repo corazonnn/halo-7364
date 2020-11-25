@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
     
     
-  has_many :products
+  has_many :products, dependent: :destroy
   #中間テーブルをたくさん持ってる
   has_many :goods, dependent: :destroy
   
