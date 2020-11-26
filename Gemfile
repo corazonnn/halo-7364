@@ -70,6 +70,7 @@ gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 #画像のリサイズ
 gem 'mini_magick'
 gem 'cloudinary' , '1.11.1'
+
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
   
