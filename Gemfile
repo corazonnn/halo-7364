@@ -73,6 +73,5 @@ gem 'cloudinary' , '1.11.1'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
-  
 end
 
