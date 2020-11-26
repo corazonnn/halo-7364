@@ -1,6 +1,8 @@
 class User < ApplicationRecord
+  
   mount_uploader :image, ImageUploader
-  mount_uploader :image, UserUploader
+  #もしかして二つなんていらないんじゃ？
+  #mount_uploader :image, UserUploader
   before_save { self.email.downcase! }
   validates :username, presence: true, length: { maximum: 50 }
   
@@ -14,7 +16,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
                     
   #mount_uploaderの第一引数には画像をアップロードするカラムを、第二引数にはアップローダーの設定ファイルのクラス名 
-  mount_uploader :image, ImageUploader
+  #mount_uploader :image, ImageUploader
   
   has_secure_password
     

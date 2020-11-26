@@ -5,11 +5,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_limit: [200, 100]
   
+  #if Rails.env.production?
+  #  include Cloudinary::CarrierWave
+  #  
+  #else
+    
+    
   if Rails.env.production?
     include Cloudinary::CarrierWave
-    
   else
-    
     #rails内に保存する
     storage :file
   end
