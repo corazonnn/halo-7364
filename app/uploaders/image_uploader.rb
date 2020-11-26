@@ -2,8 +2,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   #Include RMagick or MiniMagick support:
   #include CarrierWave::RMagick
   
-  include CarrierWave::MiniMagick
-  process resize_to_limit: [200, 100]
+  #include CarrierWave::MiniMagick
+  #process resize_to_limit: [200, 100]
   
   #if Rails.env.production?
   #  include Cloudinary::CarrierWave
