@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product=current_user.products.find(params[:id])
+    
   end
 
   def update
