@@ -8,7 +8,16 @@
 
 .navbar{
     height:80px;
+    
 }
+
+@media only screen and (max-width: 768px) {
+#nav-bar {
+z-index:100;
+}
+
+}
+
 
 //アカウント登録ページ
 .big-bg{
