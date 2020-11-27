@@ -20,6 +20,7 @@
 }
 
 #home{
+  min-height: 100vh;
   background-image:image-url('home.jpg')
 }
 
@@ -57,6 +58,7 @@
 //ここからindex.html.erb
 #user-chart{
   #height:1100px;
+  min-height: 100vh;
   background-image:image-url('userlist.jpg')
 }
 

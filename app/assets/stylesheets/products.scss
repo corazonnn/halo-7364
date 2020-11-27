@@ -5,7 +5,7 @@
 //ここからindex.html.erb
 #product-chart{
   background-size:cover;
-
+  min-height: 100vh;
   background-image:image-url('product1.jpg')
 }
 

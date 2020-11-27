@@ -4,7 +4,7 @@ class User < ApplicationRecord
   #もしかして二つなんていらないんじゃ？
   #mount_uploader :image, UserUploader
   before_save { self.email.downcase! }
-  validates :username, presence: true, length: { maximum: 50 }
+  validates :username, presence: true, length: { maximum: 20 }
   
   #これを書いちゃうとユーザ登録時に必要とされちゃうから一旦外してみる→やっぱりそうだ！
   #presence:true書かなきゃいいだけじゃない？？
