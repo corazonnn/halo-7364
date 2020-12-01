@@ -17,18 +17,19 @@
                       <p class="mb-0 pb-0">
                         <!--<strong>Image:</strong>-->
                         <% if user.image? %>
-                        <%= image_tag( user.image.url,class: 'icon') %>
+                          <%= image_tag( user.image.url,class: 'icon') %>
                         <% else %>
-                        <%= image_tag("default_icon.png",class: 'icon')   %>
+                          <%= image_tag("default_icon.png",class: 'icon')   %>
                         <% end %>
                         
                       </p>
                       
                       <div class="card-body pb-0 pb-0">
                         <small class="border-bottom">ユーザー名</small>
-                        <h5><%= user.username %></h5>
+                        
+                        <h5><%= truncate(user.username, length: 20) %></h5>
                         <small class="border-bottom">使用言語</small>
-                        <h5><%= user.language %></h5>
+                        <h5><%= truncate(user.language, length: 15) %></h5>
                         
                         <%= link_to(user_path(user), { class: "btn pt-2 pb-0 pr-0 pl-0"}) do %>
                           <h5 id="product-index-more">

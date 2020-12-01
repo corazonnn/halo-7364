@@ -39,7 +39,7 @@
                         <h6><%= product.user.username %></h6>
                       <% end %>
                       <small class="border-bottom">使用言語</small>
-                      <p class="card-text"><%=  product.language %></p>
+                      <p class="card-text"><%= truncate(product.language, length: 15) %></p>
                       <small class="border-bottom">作成日</small>
                       <p class="card-text"><%= product.created_at.strftime("%Y年%m月%d日")  %></p>
 

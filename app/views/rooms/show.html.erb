@@ -29,7 +29,12 @@
         <ul class="list-unstyled">
           <% @messages.each do |message| %>
             <li class="media mb-3">
-              <svg class="mr-3" width="16" height="16"><%= image_tag( message.user.image.url, class: 'icon-chatroom-page') %></svg>
+              <% if message.user.image? %>
+                <svg class="mr-3" width="16" height="16"><%= image_tag( message.user.image.url, class: 'icon-chatroom-page') %></svg>
+              <% else %>
+                <svg class="mr-3" width="16" height="16"><%= image_tag("default_icon.png",class: 'icon-chatroom-page')   %></svg>
+              <% end %>
+              
               
               <div class="media-body">
                 <div>
