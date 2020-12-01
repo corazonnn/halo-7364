@@ -8,7 +8,7 @@
           <div class="card-deck">
           <div class="card mb-5">
             <!--入力フォーム#########################################################################-->
-            <%= f.label :画像 %><br />
+            
             <%= f.file_field :image %>
             <div id="edit-button" class="mb-3 mt-2 text-center">
               <%= f.submit 'アイコンを更新', class: 'btn btn-warning'%>
@@ -27,8 +27,16 @@
                 <%= f.submit '保存', class: 'btn btn-success' %>
               </div>
               <div class="return-button text-center">
-                <p><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
-                <p><%= link_to( '詳細に戻る',user_path(@user) ,{class: "btn btn-outline-warning"})%></p>
+                
+                <%= link_to(users_path, { class: " btn pt-0 pb-0 pr-2 pl-2"}) do %>
+                  <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                  <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                <% end %>
+                <%= link_to(user_path(@user), { class: " btn pt-0 pb-0 pr-2 pl-2"}) do %>
+                  <h5 class="pb-0 mb-0"  id="product-show-show"><i class="fas fa-redo"></i></h5>
+                  <small class="pt-0 mt-0"  id="product-show-show">詳細に戻る</small>
+                <% end %>
+                
               </div>
               
             </div>

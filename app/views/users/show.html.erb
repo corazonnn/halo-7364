@@ -24,7 +24,11 @@
                       </div>
 
                       <% if @user==current_user %>
-                        <p class="mt-4 ml-3"><%= link_to("編集", edit_user_path(@user), { class: " btn btn-outline-success"}) %></p>
+                        <p class="mt-4 ml-3">
+                          <%= link_to(edit_user_path(@user), { class: " btn btn-outline-success"}) do %>
+                            <i class="fas fa-user-edit"></i>
+                          <% end %>
+                        </p>
                       <% else %>
                          <p class="mt-4 ml-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> 
                       <% end %>
@@ -37,7 +41,11 @@
                   </div>
                   
                   <div class="text-right">
-                    <p class=" mb-0"><%= link_to('一覧に戻る',users_path, { class: " btn btn-outline-primary"})%></p>
+                    <%= link_to(users_path, { class: " btn pt-0 pb-0 pr-2 pl-2"}) do %>
+                      <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                      <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                    <% end %>
+                    
                   </div>
                 </div>
               </div>

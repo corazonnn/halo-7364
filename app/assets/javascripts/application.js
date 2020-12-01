@@ -10,6 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
+
+
+//この二行を追加（jqueryを読み込む際に）
+//= require jquery
+//= require jquery_ujs
+
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

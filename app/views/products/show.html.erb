@@ -51,15 +51,45 @@
                   
                 </div>
                 <div class="card-footer text-muted">
-                  <div class="d-flex justify-content-around">
+                  
                     <% if current_user==@product.user %>
                       <!--もし現在のユーザーとこの操作をしている人が同じなら-->
-                      <h5 class="mb-0"><%= link_to("編集", edit_product_path(@product),class: " btn btn-warning  pt-1 pb-1 pr-3 pl-3") %></h5>
-                      <h5 class="mb-0"><%= link_to("削除", product_path(@product), method: :delete, data: { confirm: '本当に削除しますか？' } , class: "btn btn-danger  pt-1 pb-1 pr-3 pl-3") %></h5>
+                      <div class="d-flex justify-content-around">
+                        <h5 class="mb-0">
+                          <%= link_to(edit_product_path(@product),class: " btn  pt-1 pb-1 pr-3 pl-3") do %>
+                            <h5 class="pb-0 mb-0" id="product-show-edit"><i class="far fa-edit"></i></h5>
+                            <small class="pt-0 mt-0" id="product-show-edit">編集</small>
+                          <% end %>
+                        </h5>
+                        
+                        <h5 class="mb-0">
+                          <%= link_to(product_path(@product), method: :delete, data: { confirm: '本当に削除しますか？' } , class: "btn  pt-1 pb-1 pr-3 pl-3") do %>
+                            <h5 class="pb-0 mb-0" id="product-show-destroy"><i class="fas fa-trash-alt"></i></h5>
+                            <small class="pt-0 mt-0" id="product-show-destroy">削除</small>
+                          <% end %>
+                        </h5>
+                        
+                        <h5  class="mb-0">
+                          <%= link_to(root_path, { class: " btn pt-1 pb-1 pr-2 pl-2"}) do %>
+                            <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                            <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                          <% end %>
+                        </h5>
+                      </div>
+                    <% else %>  
+                    <div class="d-flex justify-content-center">
+                      <h5  class="mb-0">
+                        <%= link_to(root_path, { class: " btn pt-1 pb-1 pr-2 pl-2"}) do %>
+                          <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                          <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                        <% end %>
+                      </h5>
+                    </div>
+                      
                       
                     <% end %>
-                    <p><%= link_to("一覧に戻る", root_path, { class: " btn btn-primary  pt-1 pb-1 pr-3 pl-3"}) %></p>
-                  </div>
+                    
+                  
                   
                 </div>
               </div>
@@ -73,7 +103,7 @@
                   <%= hidden_field_tag :product_id, @product.id %>
                   <%= f.text_field :reply, class: 'form-control', :placeholder => "コメントする..."%>
                 </div>
-                <div class="text-center mt-4 mb-0">
+                <div class="form-group mt-4">
                   <%= f.submit '投稿', class: 'btn btn-success' %>
                 </div>
               <% end %>
@@ -84,7 +114,7 @@
                     <thead>
                       <tr>
                         
-                        <th scope="col">Username</th>
+                        <th scope="col">名前</th>
                         <th scope="col">コメント</th>
                         <th scope="col">日時</th>
                         
@@ -109,8 +139,8 @@
                                         <% if current_user.id == comment.user.id %>
                                           <%= form_with(model: current_user.comments.find(comment.id) ,local: true, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "form-inline") do |f| %>
                                             <%= hidden_field_tag :comment_id, comment.id %>
-                                            <%= button_tag :type => "submit", :class =>"btn btn-danger pt-0 pb-0 pr-0 pl-0" do %>
-                                              <small>削除</small>
+                                            <%= button_tag :type => "submit", :class =>"btn  pt-0 pb-0 pr-2 pl-2" do %>
+                                              <i class="fas fa-trash-alt"></i>
                                             <% end %>
                                           <% end %>
                                         <% end %>

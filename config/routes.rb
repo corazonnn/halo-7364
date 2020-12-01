@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   
   
   get 'signup' ,to: 'users#new'
+  
+  get 'chat-room' ,to: 'rooms#show'
+  
   resources :users, only: [:index, :show, :create,:edit,:update] 
    
   resources :products
@@ -17,4 +20,6 @@ Rails.application.routes.draw do
   resources :goods, only:[:create,:destroy]
   
   resources :comments, only:[:create,:destroy]
+  
+  resources :messages, only: [:create, :destroy]
 end

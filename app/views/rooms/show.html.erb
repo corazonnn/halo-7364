@@ -1,0 +1,62 @@
+<div id="chatroom-chart" class="big-bg">
+  <h1  class="pl-5 pt-0 pl-3" id="product-list-mozi">チャットルーム</h1>
+  <p  class="pl-5 mb-2 pt-0 pl-3 pb-3" id="product-list-mozi">朝活など情報交換していきましょう</p>
+  
+  
+  <!--
+  <form>
+    <label>Say something:</label><br>
+    <input type="text" data-behavior="room_speaker">
+  </form>
+  -->
+  <div class="container">
+    <div class="row">
+      <aside class="col-sm-3">
+        <%= form_with(model: @message, method: :post, local: true ,class: "mb-4 form-inline justify-content-center") do |f| %>
+        <div><%= render 'layouts/error_messages', model: f.object %></div>
+          <div class="form-group mt-4">
+            
+            <%= f.text_area :chat, class: 'form-control', rows: 2 %>
+          </div>
+          <div class="form-group mt-4">
+            <%= f.submit '送信', class: 'btn btn-success ' %>
+          </div>
+           
+         
+        <% end %>
+      </aside>
+      <div class="col-sm-9">
+        <ul class="list-unstyled">
+          <% @messages.each do |message| %>
+            <li class="media mb-3">
+              <svg class="mr-3" width="16" height="16"><%= image_tag( message.user.image.url, class: 'icon-chatroom-page') %></svg>
+              
+              <div class="media-body">
+                <div>
+                  <%= link_to user_path(message.user) do %>
+                    <%= message.user.username %>
+                    <span class="text-dark"><%= message.created_at.strftime("%Y-%m/%d")  %></span>
+                  <% end %>
+                  
+                  <% if current_user == message.user %>
+    
+                    <%= link_to(message, method: :delete, data: { confirm: "本当に消しますか？" }, class: 'btn btn-sm') do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div>
+                  <p><%= message.chat %></p>
+                </div>
+              </div>
+            </li>
+          <% end %>
+          <div class="d-flex justify-content-left mt-4"><%= paginate @messages %></div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

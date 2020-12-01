@@ -29,7 +29,15 @@
                         <h5><%= user.username %></h5>
                         <small class="border-bottom">使用言語</small>
                         <h5><%= user.language %></h5>
-                        <p><%= link_to("詳細", user_path(user), { class: " btn btn-outline-secondary"}) %></p>
+                        
+                        <%= link_to(user_path(user), { class: "btn pt-2 pb-0 pr-0 pl-0"}) do %>
+                          <h5 id="product-index-more">
+                            More&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+                          </h5>
+                        <% end %>
+                        
+                        
+                        
                       </div>
                     </div>
                   </div>

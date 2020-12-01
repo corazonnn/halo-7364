@@ -39,10 +39,20 @@
               
               <div class="text-center mt-1">
                 <span class="pr-3">
-                  <%= link_to("一覧に戻る",root_path,class:"btn btn-primary") %>
+                  <%= link_to(root_path, { class: " btn pt-0 pb-0 pr-2 pl-2"}) do %>
+                    <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                    <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                  <% end %>
                 </span>
+
+                  <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                    <h5 class="pb-0 mb-0" id="product-new-save"><i class="fas fa-save fa-lg "></i></h5>
+                    <small class="pt-0 mt-0" id="product-new-save" >保存</small>
+                  
+                  <% end %>
                 
-                <%= f.submit '保存', class: 'btn btn-success' %>
+                
+                
               </div>
               
             <% end %>

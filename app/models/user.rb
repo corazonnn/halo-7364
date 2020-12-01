@@ -24,12 +24,11 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   #中間テーブルをたくさん持ってる
   has_many :goods, dependent: :destroy
-  
-  
-  
+
   has_many :comments, dependent: :destroy
-  
-  
+
+  has_many :messages  
+
   def nice(any_product)
     #userがniceを押したらそのuserのgoodsテーブルにそのproduct追加する.0→→→1
     self.goods.find_or_create_by(product_id: any_product.id)

@@ -1,0 +1,14 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#chatroom-chart{
+  background-size:cover;
+  min-height: 100vh;
+  background-image:image-url('chatroom.jpg')
+}
+.icon-chatroom-page {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  overflow: hidden;
+}
