@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  has_many :messages  
+  has_many :messages, dependent: :destroy  
 
   def nice(any_product)
     #userがniceを押したらそのuserのgoodsテーブルにそのproduct追加する.0→→→1
