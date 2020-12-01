@@ -1,7 +1,7 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     #Action Cableのコネクションを確立する段階でユーザーを識別できるようにするため
-    dentified_by :current_user
+    identified_by :current_user
     
     
     #  
