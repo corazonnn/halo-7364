@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
       #flash[:success] = 'メッセージを投稿しました。'
       redirect_to chat_room_path
     else
-      @messages = current_user.messages.order(id: :desc).page(params[:page]).per(6)
+      @messages = Message.order(id: :desc).page(params[:page]).per(6)
       #flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'rooms/show'
     end
