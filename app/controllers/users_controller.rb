@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show,:edit]
   #userを一覧表示する
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(8)
+    @users = User.order(id: :desc).page(params[:page]).per(12)
   end
 
   def show
@@ -31,11 +31,9 @@ class UsersController < ApplicationController
 
   def edit
     @user=User.find(params[:id])
-    if @user == current_user
-      render action: :edit
-    else
+     unless @user == current_user
       redirect_to root_path
-    end
+     end
     
   end
 

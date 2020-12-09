@@ -16,15 +16,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+    
+    <%= favicon_link_tag('favicon-16x16.png') %>
   </head>
 
   <body>
+    
+  
     <%= render 'layouts/navbar' %>
 
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
+    <%= render 'layouts/flash_messages' %>
       <!--ここに</div>をつけた。理由はsignupのページで背景を入れようとしてもここのcontainerが邪魔して画面いっぱいまで広がらないから-->
-    </div>
-      <%= yield %>
+
+    <%= yield %>
   </body>
 </html>

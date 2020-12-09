@@ -1,58 +1,52 @@
 <!--ユーザが横にできない！！！！-->
-<div id="user-chart" class="big-bg">
+<!--<div id="user-chart" class="big-bg">-->
+<div class="jumbotron mb-0">
+  <div class="container">
+    <h1 class="display-4">USER LIST</h1>
+    <p class="lead">一緒に頑張る仲間たち</p>
+  </div>
+</div>
   
-  <h1 class="pl-5 mt-2 mb-4 p-3" id="user-list-mozi">ユーザリスト</h1>
-    <% if @users.any? %>
-      <div class="profile_list">
-        <div class="container">
-          <div class="row">
+<article>
+  <% if @users.any? %>
+    <div class="profile_list pt-5">
+      <div class="container">
+        <div class="row">
+          
+          
+          
+          <% @users.each do |user| %>
+          <div class="col-md-3">
             
-            
-           <!--rowのすぐ下にしなきゃいけない-->
-              <% @users.each do |user| %>
-              <div class="col-md-3 mb-3 text-center">
-                  <div class="card-deck">
-                    <div class="card mb-5">
-                      <!--表示方法#######################################################-->
-                      <p class="mb-0 pb-0">
-                        <!--<strong>Image:</strong>-->
-                        <% if user.image? %>
-                          <%= image_tag( user.image.url,class: 'icon') %>
-                        <% else %>
-                          <%= image_tag("default_icon.png",class: 'icon')   %>
-                        <% end %>
-                        
-                      </p>
-                      
-                      <div class="card-body pb-0 pb-0">
-                        <small class="border-bottom">ユーザー名</small>
-                        
-                        <h6><%= truncate(user.username, length: 20) %></h6>
-                        <small class="border-bottom">使用言語</small>
-                        <h5><%= truncate(user.language, length: 15) %></h5>
-                        
-                        <%= link_to(user_path(user), { class: "btn pt-2 pb-0 pr-0 pl-0"}) do %>
-                          <h5 id="product-index-more">
-                            More&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
-                          </h5>
-                        <% end %>
-                        
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-              </div>
+            <div class="card card-user mb-2">
+              <div class="card-body m-2 p-2">
+                <div class="media">
+                  <% if user.image? %>
+                    <%= image_tag(user.image.url, class: 'icon-user-page') %>
+                  <% else %>
+                    <%= image_tag("default_icon.png", class: 'icon-user-page')   %>
+                  <% end %>
+                  
+                  <div class="media-body ml-2">
+                    <h6 class="username mt-0">
+                      <%= link_to(user_path(user),class: "link_color") do %>
+                        <%= truncate(user.username, length: 15) %>
+                      <% end %>
+                    </h6>
+                    <small class="mb-2 text-muted"><%= truncate(user.language, length: 15) %></small>
                     
-              <% end %>
-            
-            
-            
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        <% end %>
+         
+         
+ 
         </div>
       </div>
-      <div class="d-flex justify-content-center"><%= paginate @users %></div>
-    <% end %>
-</div>
-
-<!--<svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>-->
+    </div>
+    <div class="d-flex justify-content-center"><%= paginate @users %></div>
+  <% end %>
+</article>

@@ -19,9 +19,13 @@ class ProductsController < ApplicationController
     @product = current_user.products.build
   end
 
-
+  #本人確認はupdateやindexではいらないが、なにかデータを書き換える時に必要（destroy,edit）。
   def edit
-    @product=current_user.products.find(params[:id])
+    @product = Product.find_by(id: params[:id])
+     unless @product.user == current_user
+        redirect_to root_path
+     end
+    #@product=current_user.products.find(params[:id])
     
   end
 
@@ -38,7 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product=current_user.products.find(params[:id])
+    @product=current_user.products..find_by(id: params[:id])
     if current_user==@product.user
       @product.destroy
       flash[:success] = "正常に削除できました"
@@ -49,7 +53,7 @@ class ProductsController < ApplicationController
 
   #アプリを開いてまず初めにぶつけるところ
   def index
-    @products = Product.order(id: :desc).page(params[:page]).per(4)
+    @products = Product.order(id: :desc).page(params[:page]).per(8)
   end
 
   def show

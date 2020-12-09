@@ -37,10 +37,10 @@ z-index:100;
   color:#fff;
 }
 .first-message-signup{
-  font-size:70px;
+  font-size: 2rem;
 }
 .second-message-signup{
-  font-size:40px;
+  font-size: 1.5rem;
   padding-top:30px;
 }
 //ここまで
@@ -78,15 +78,7 @@ z-index:100;
 //ここまで
 
 
-//ログインページここから
-.first-message-login{
-  font-size:70px;
-}
-.second-message-login{
-  font-size:40px;
-  padding-top:30px;
-}
-//ここまで
+
 
 .icon {
   width: 130px;
@@ -98,4 +90,23 @@ z-index:100;
 #user-show-name{
   display:flex;
   vertical-align: middle;
+}
+.form-wrapper {
+  background: #fafafa;
+  margin: 3em auto;
+  padding: 0 1em;
+  max-width: 370px;
+}
+
+.icon-user-page {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.card-user{
+  border-left:7px solid #08ffc8;
+}
+.small-comment{
+  font-size: 14px;
 }

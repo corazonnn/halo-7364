@@ -1,8 +1,14 @@
-<div id="user-chart" class="big-bg">
+<article>
   <div class="container">
       <div class="row">
           <div class="col-sm-5 text-center">
-              <h1 class="pl-5 mt-3 mb-4 p-4 font-weight-bold" >プロフィール</h1>
+            <div class="jumbotron mb-4">
+              <div class="container">
+                <h1 class="display-4">PROFILE</h1>
+                <p class="lead">こういう人です</p>
+              </div>
+            </div>
+              <!--<h1 class="pl-5 mt-3 mb-4 p-4 font-weight-bold" >プロフィール</h1>-->
               <div class="card-deck">
                 <div class="card mb-5">
                   <p>
@@ -51,13 +57,19 @@
               </div>
           </div>   
           
-          <div class="pl-5 mt-3 mb-4 p-4 col-sm-7 text-center ">
-              <h1 class="mb-5 font-weight-bold">プロダクト一覧</h1>
-              <%= render 'layouts/product-list' ,user: @user %>
+          <div class=" mt-0 mb-4 p-0 col-sm-7 text-center ">
+            <div class="jumbotron mb-4">
+              <div class="container">
+                <h1 class="display-4">PRODUCT LIST</h1>
+                <p class="lead">今まで作ってきたもの</p>
+              </div>
+            </div>  
+            <!--<h1 class="mb-5 font-weight-bold">プロダクト一覧</h1>-->
+            <%= render 'layouts/product-list' ,user: @user %>
           </div>
       </div>
   </div>
-</div>
+</article>
 
 
 

@@ -1,48 +1,39 @@
 <header id="header_nav">
 
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light">
       
-      <a href="/" class="navbar-brand"><div class="font-weight-bold" id="logo">成長日記</div></a> 
+      <a href="/" class="navbar-brand mr-5"></a> 
       <!-- 横幅が狭いときに出るハンバーガーボタン -->
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
           <span class="navbar-toggler-icon"></span>
       </button>
       
       <!-- メニュー項目 -->
-      <div class="collapse navbar-collapse bg-light p-3" id="nav-bar">
+      <div class="collapse navbar-collapse" id="nav-bar">
         
           <ul class="navbar-nav mr-auto">
-              <li class="nav-item active mr-2"><%= link_to 'Product', products_path, class: 'nav-link' %></li>
-              <li class="nav-item mr-2"><%= link_to 'User', users_path, class: 'nav-link' %></li>
+              <li class="p-2 border-right"><%= link_to(products_path, class: "nav-link") do %><i class="fa fa-fw fa-building fa-lg"></i>&nbsp;&nbsp;OUTPUT<% end %></li>
+              <li class="p-2 border-right"><%= link_to(users_path, class: "nav-link") do %><i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;USERS<% end %></li>
               <% if logged_in? %>
-                <li class="nav-item"><%= link_to 'ChatRoom', chat_room_path, class: 'nav-link' %></li>
-                <li class="nav-item"><%= link_to 'MyProfile', user_path(current_user), class: 'nav-link' %></li>
+                <li class="p-2 border-right"><%= link_to(chat_room_path, class: "nav-link") do %><i class="fas fa-comment fa-lg"></i>&nbsp;&nbsp;CHATROOM<% end %><li>
+                <li class="p-2 border-right"><%= link_to(user_path(current_user), class: "nav-link") do %><i class="fas fa-user fa-lg"></i>&nbsp;&nbsp;PROFILE<% end %></li>
               <% end %>
           </ul>
               <% if logged_in? %>
                 <ul class="navbar-nav mr-3">
-                  <li class="nav-item "><%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %></li>
+                  <li class="p-2 nav-item"><%= link_to(logout_path, method: :delete, class: 'nav-link') do %><i class="fas fa-running fa-lg"></i>LOGOUT<% end %></li>
                 </ul>
                 
               <% else %>
                 <div>
-                  
-                  <ul class="navbar-nav mr-3">
-                    <li class="nav-item mr-3"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
-                    <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
+                  <ul class="p-2 navbar-nav mr-3">
+                    <li><%= link_to(login_path, class: 'nav-link') do %><i class="fas fa-sign-in-alt fa-lg"></i>&nbsp;&nbsp;LOGIN<% end %></li>
+                    <li><%= link_to(signup_path, class: 'nav-link') do %><i class="fas fa-user-plus fa-lg"></i>&nbsp;&nbsp;SIGNUP<% end %></li>
                   </ul>
-                  
                 </div>
-              <% end %>
-              
-          
+              <% end %> 
       </div>
   </nav>
-  
-  
-  
-  
-  
 </header>
   
 

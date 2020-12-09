@@ -1,7 +1,12 @@
-<div id="product-chart" class="big-bg">
-  <h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">プロダクト編集</h1>
+<div class="jumbotron mb-0">
+  <div class="container">
+    <h1 class="display-4">OUTPUT EDIT</h1>
+    <p class="lead">小さな成功の編集ページ</p>
+  </div>
+</div>
+<article>
   <div class="product_show">
-    <div class="container">
+    <div class="container pt-5">
       <div class="row">
         
         
@@ -31,7 +36,7 @@
                     </div>
                     <div class="form-group text-left" id="new-product">
                       <%= f.label :detail, '概要' %>
-                      <%= f.text_field :detail, class: 'form-control' %>
+                      <%= f.text_area :detail, class: 'form-control' %>
                     </div>
                     <%= f.submit '更新',class: "btn btn-success"%>
                   <% end %>
@@ -42,4 +47,4 @@
       </div>
     </div>
   </div>
-</div> 
+</article> 

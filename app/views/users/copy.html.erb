@@ -1,0 +1,94 @@
+<%=
+=begin 
+product.idexのカードの中身。万が一使うときのために残しておく
+<div class="card card-product">
+                    <div class="output-card">
+                      <div class="card-body">
+                        <div class="media">
+                          <div class="icon-icon-icon">
+                            <% if product.user.image? %>
+                              <%= image_tag( product.user.image.url, class: 'icon-product-page') %>
+                            <% else %>
+                              <%= image_tag("default_icon.png", class: 'icon-product-page')   %>
+                            <% end %>
+                          </div>
+                          
+                          <div class="media-body ml-1">
+                            <div class="aaa mr-auto">
+                              <h5 class="username mt-0">
+                                <%= link_to(user_path(product.user),class: "link_color") do %>
+                                  <%= product.user.username %>
+                                <% end %>
+                              </h5>
+                              <small class="mb-2 text-muted"><%= product.created_at.strftime("%Y年%m月%d日")  %></small>
+                            </div>
+                          <div class="output-card-title">
+                            <div class="card-body">
+                              <h6 class="card-title ">
+                                <%= link_to(product_path(product),class: "link_color") do %>
+                                  <%= product.title %>
+                                <% end %>
+                              </h6>
+                              <h6 class="text-center text-muted"><%= truncate(product.language, length: 15) %></h6>
+                            </div>
+                          </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
+                        
+                      
+                    
+                    <div class="output-card-iine">
+                      <div class="card-body">
+                        <% if logged_in? %>
+                         <!--もしいいねしてたら-->
+                          <% if current_user.nice?(product) %>
+                              <div class="d-flex justify-content-around">
+                                <%= form_with(model: current_user.goods.find_by(product_id: product.id) ,local: true, method: :delete,class: "form-inline") do |f| %>
+                                  <%= hidden_field_tag :product_id, product.id %>
+                                  <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                                    <h5><span class="badge" id="product-index-iine"><i class="fas fa-thumbs-up fa-lg iine-green"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                          <!--まだいいねしてなかったら-->
+                          <% else %>
+                            <div class="d-flex justify-content-around">
+                              <%= form_with(model: current_user.goods.build(product_id: product.id) ,local: true, method: :post,class: "form-inline") do |f| %>
+                                <%= hidden_field_tag :product_id, product.id %>
+                                <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                                  <h5><span class="badge" id="product-index-iine"><i class="far fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          <% end %>  
+                        <% else %>
+                          <div class="d-flex justify-content-around">
+                            <form class="form-inline">
+                              <button type="button" class="btn pt-0 pb-0 pr-0 pl-0" disabled>
+                                <h5><span class="badge" id="product-index-iine"><i class="far fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                              </button>
+                            </form>
+                          </div>
+                        <% end %>
+                      </div>
+                    
+                    
+                    </div>
+                        
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    
+                    
+                    
+                  </div>
+=end
+%> 

@@ -6,9 +6,10 @@
 }
 
 #login-page{
-  #height:800px;
+  
   min-height: 100vh;
-  background-image:image-url('index2.jpg')
+  background-image:image-url('header.jpg')
+  
 }
 
 .first-message-login,.second-message-login{
@@ -18,4 +19,24 @@
 
 #signup-path{
   color:#fff;
+}
+
+.first-message-login{
+  font-size: 2rem;
+}
+.second-message-login{
+  font-size: 1.5rem;
+  padding-top:30px;
+}
+article.pannel{
+  background: inherit;
+  position: relative;
+  width: 90%;
+  margin: 0vh auto;
+  border-radius: 15px;
+  border: 10px solid rgba(255,255,255,.15);
+  box-shadow: 1px 1px 4px rgba(0,0,0,.3);
+  z-index: 5;
+  font-size: 1.4rem;
+  height: 50%;
 }

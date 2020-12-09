@@ -1,140 +1,102 @@
-<% if logged_in? %>
-  <!--<div class="d-flex justify-content-center"><%= current_user.username %>さんがログイン中</div>-->
-<% else %>
-  
-<% end %>
-<div id="product-chart" class="big-bg">
-  
-  <h1 class="pl-5 mt-2 mb-2 p-3" id="product-list-mozi">みんなのアウトプット</h1>
-  
-  <p class="text-center mb-5"><%= link_to('新規作成',new_product_path,{ class: "btn btn-primary"})  %></p>
-    <% if @products.any? %>
-      <div class="profile_list">
-        <div class="container">
-          <div class="row">
-            
-            
-           <!--rowのすぐ下にしなきゃいけない-->
+
+<!--<div id="product-chart" class="big-bg">-->
+<div class="jumbotron mb-0">
+  <div class="container">
+    <h1 class="display-4">OUTPUT LISTs</h1>
+    <p class="lead">小さな成功体験をみんなで共有しよう</p>
+  </div>
+</div>
+<article>
+  <p class="text-center mb-5 pt-3"><%= link_to('新規作成',new_product_path,{ class: "btn btn-primary"})  %></p>
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-1">
+        <% if @products.any? %>
+        <div class="profile_list">
+          <div class="container">
+            <div class="row">
               <% @products.each do |product| %>
-                <div class="col-md-3 mb-3 text-center">
-                  <div class="card mb-5">
-                    <div class="card-header p-1">
-                      <small class="border-bottom">タイトル</small>
-                      <h5><%= product.title %></h5>
-                      </div>
-                    <div class="card-body p-2">
-                      <div class="d-flex justify-content-center">
-                      
-                        
-                        
+                <div class="col-md-12">
+                  <div class="wrap">            <!-- 記事エリア -->
+                    <section>
+                      <div class="flex">	        
                         <% if product.user.image? %>
                           <%= image_tag( product.user.image.url, class: 'icon-product-page') %>
                         <% else %>
                           <%= image_tag("default_icon.png", class: 'icon-product-page')   %>
-                        <% end %>
-                        
-                        <%= link_to user_path(product.user) do %>
-                        
-                      </div>  
-                        <h6><%= product.user.username %></h6>
-                      <% end %>
-                      <small class="border-bottom">使用言語</small>
-                      <p class="card-text"><%= truncate(product.language, length: 15) %></p>
-                      <small class="border-bottom">作成日</small>
-                      <p class="card-text"><%= product.created_at.strftime("%Y年%m月%d日")  %></p>
-
-                    </div>
-                    <div class="card-footer pb-0">
-                      <% if logged_in? %>
-                        <% if current_user.nice?(product) %>
-
-                        <!--Q.なんでfind_byにするの？だって上のifで中にあるかどうか確認してるからgoodsの中にあることは確定じゃない？-->
-                        <!--A.findはプライマリーキーのみしか探すことができないからproduct_idで探したいからfind_byを使うべき-->
-                          <!--Q.current_user.goods.find_by(product_id: product.id)の理由は-->
-                          <!--A.本当はコントローラー内でやらなきゃいけないが、@good=current_user.goods.find_by(product_id: product.id)を入れているのと同じ-->
-                         
-                         
-                         
-                         
-                            <div class="d-flex justify-content-around">
-                              
-                              
-                              
-                              <%= form_with(model: current_user.goods.find_by(product_id: product.id) ,local: true, method: :delete,class: "form-inline") do |f| %>
-                                <%= hidden_field_tag :product_id, product.id %>
-                                <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
-                                  <h5><span class="badge" id="product-index-iine"><i class="fas fa-thumbs-up fa-lg iine-green"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
-                                <% end %>
-                              <% end %>
-                              
-                              
-                              
-                              <%= link_to(product_path(product), { class: "btn pt-1 pb-0 pr-0 pl-0"}) do %>
-                                <h6 id="product-index-more">
-                                  More&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
-                                </h6>
-                              <% end %>
-  
-                            </div>
-                          
-    
-                        <% else %>
-                          <div class="d-flex justify-content-around">
-                            
-                            
-                            <%= form_with(model: current_user.goods.build(product_id: product.id) ,local: true, method: :post,class: "form-inline") do |f| %>
-                              <%= hidden_field_tag :product_id, product.id %>
-                              <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
-                                <h5><span class="badge" id="product-index-iine"><i class="far fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
-                              <% end %>
-                            <% end %>
-                            
-                            
-                            
-                            <%= link_to(product_path(product), { class: "btn pt-1 pb-0 pr-0 pl-0"}) do %>
-                              <h6 id="product-index-more">
-                                More&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
-                              </h6>
-                              
-                            <% end %>
-                          </div>
-                          
-                         
-                          
-                        <% end %>  
-                      <% else %>
-                        <div class="d-flex justify-content-around">
-                          
-                          
-                          <form class="form-inline">
-                            <button type="button" class="btn btn-success pt-0 pb-0 pr-1 pl-1" disabled>
-                              <h5 class="mb-0"><span class="badge badge-success">頑張ったね&nbsp;&nbsp;<i class="far fa-thumbs-up"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
-                            </button>
-                          </form>
-                          
-                          
-                          <%= link_to(product_path(product), { class: "btn pt-0 pb-0 pr-1 pl-1"}) do %>
-                            <h6 id="product-index-more">More</h6>
+                        <% end %>   
+                        <h2>
+                          <%= link_to(user_path(product.user),class: "link_color") do %>
+                            <%= product.user.username %>
                           <% end %>
+                        </h2>	        
+                        	        
+                        <p class="date"><%= product.created_at.strftime("%Y年%m月%d日")  %></p>	     
+                      </div>	      
+                      <div class="flex contents">	        
+                        <p class="text">
+                          <%= link_to(product_path(product),class: "link_color") do %>
+                            <%= product.title %>
+                          <% end %>
+                        </p>	
+                        <div class="iine-icon">
+                          <% if logged_in? %>
+                           <!--もしいいねしてたら-->
+                            <% if current_user.nice?(product) %>
+                                <div class="d-flex justify-content-around">
+                                  <%= form_with(model: current_user.goods.find_by(product_id: product.id) ,local: true, method: :delete,class: "form-inline") do |f| %>
+                                    <%= hidden_field_tag :product_id, product.id %>
+                                    <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                                      <h5><span class="badge" id="product-index-iine"><i class="fas fa-thumbs-up fa-lg iine-green"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                                    <% end %>
+                                  <% end %>
+                                </div>
+                            <!--まだいいねしてなかったら-->
+                            <% else %>
+                              <div class="d-flex justify-content-around">
+                                <%= form_with(model: current_user.goods.build(product_id: product.id) ,local: true, method: :post,class: "form-inline") do |f| %>
+                                  <%= hidden_field_tag :product_id, product.id %>
+                                  <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                                    <h5><span class="badge" id="product-index-iine"><i class="far fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                            <% end %>  
+                          <% else %>
+                            <div class="d-flex justify-content-around">
+                              <form class="form-inline">
+                                <button type="button" class="btn pt-0 pb-0 pr-0 pl-0" disabled>
+                                  <h5><span class="badge" id="product-index-iine"><i class="far fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= product.goods.count  %></span></h5>
+                                </button>
+                              </form>
+                            </div>
+                          <% end %>     
                         </div>
                         
-                        
-                      <% end %>
-                      
-                      <!--「頑張ったね！ボタンをつけたい。このボタンを押すと、createメソッドに送られ、もしgoodsにすでに対象のプロダクトが含まれていたら「取り消し」ボタンに変える」-->
-                      <!--POSTメソッドでgoods#createに送る-->
-                      <!--状況の整理。まず頑張ったね！ボタンをつけたい-->
-                      <!--そのためにはgoods#createメソッド使う.-->
-   
-                      
-                      
-                    </div>
+                      </div>	   
+                    </section>
                   </div>
                 </div>
+              
+                
               <% end %>
-          </div>
-        </div>
+            </div>  
+          </div>    
+        </div>      
+        <div class="d-flex justify-content-center"><%= paginate @products %></div>
+      <% end %>   
       </div>
-      <div class="d-flex justify-content-center"><%= paginate @products %></div>
-    <% end %>
-</div>
+      <div class="col-md-5">
+        ランキング  
+      </div>
+    </div>
+  </div>
+</article>  
+  
+  
+  
+ 
+      
