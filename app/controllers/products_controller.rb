@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product=current_user.products..find_by(id: params[:id])
+    @product=current_user.products.find_by(id: params[:id])
     if current_user==@product.user
       @product.destroy
       flash[:success] = "正常に削除できました"
@@ -53,7 +53,40 @@ class ProductsController < ApplicationController
 
   #アプリを開いてまず初めにぶつけるところ
   def index
-    @products = Product.order(id: :desc).page(params[:page]).per(8)
+    @products = Product.order(id: :desc).page(params[:page]).per(6)
+  #ランキング
+    @rankranks = Product.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+    #このままだといいね 順で全てを表示することになってしまうからいいねの多い５つだけ表示する
+    @rankings = @rankranks.first(5)
+    
+  #検索機能  
+    @product_language = params[:option]
+    case @product_language
+    
+    when "1" then
+      @searchs = Product.where(language: "HTML&CSS").order(id: :desc).page(params[:page]).per(4)
+    when "2" then
+      @searchs = Product.where(language: "JavaScript").order(id: :desc).page(params[:page]).per(4)
+    when "3" then
+      @searchs = Product.where(language: "PHP").order(id: :desc).page(params[:page]).per(4)
+    when "4" then
+      @searchs = Product.where(language: "Ruby").order(id: :desc).page(params[:page]).per(4)
+    when "5" then
+      @searchs = Product.where(language: "Python").order(id: :desc).page(params[:page]).per(4)
+    when "6" then
+      @searchs = Product.where(language: "Java").order(id: :desc).page(params[:page]).per(4)
+    when "7" then
+      @searchs = Product.where(language: "C++").order(id: :desc).page(params[:page]).per(4)
+    when "8" then
+      @searchs = Product.where(language: "C#").order(id: :desc).page(params[:page]).per(4)
+    when "9" then
+      @searchs = Product.where(language: "Swift").order(id: :desc).page(params[:page]).per(4)
+    when "10" then
+      @searchs = Product.where(language: "R").order(id: :desc).page(params[:page]).per(4)
+    else
+      
+    end
+    
   end
 
   def show
@@ -64,11 +97,27 @@ class ProductsController < ApplicationController
     @comment = current_user.comments.new
   end
   
+  
+  
+  
+  
+  
+  def search
+    #フォームでは使用言語の検索に:optionフィールドを用いるからparams[:option]でいい
+    
+  end
+  
+  
+  
+  
+  
+  
+  
   private
 
   #ストロングパラメータ
   def product_params
-    params.require(:product).permit(:title,:language,:detail,:period)
+    params.require(:product).permit(:title,:language,:detail,:period,:option)
   end
   
 end

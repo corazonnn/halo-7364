@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy  
 
+  has_many :liked_products, through: :goods, source: :product
   def nice(any_product)
     #userがniceを押したらそのuserのgoodsテーブルにそのproduct追加する.0→→→1
     self.goods.find_or_create_by(product_id: any_product.id)

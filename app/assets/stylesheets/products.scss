@@ -97,11 +97,10 @@ body,ul,h1,h2,p {	  margin: 0;	  padding: 0;	}
 .wrap {	  width: 100%;	  max-width: 560px;	  margin: 0 auto;	}	
 
 section {	 
-  border-top: 1px solid #E6ECF0;
-  border-left: 5px solid #08ffc8;
+  border: 1px solid #E6ECF0;
   
 }	
-section:last-child {	  margin: 0 0 20px 0;	}	
+section:last-child {	  margin: 0;	}	
 
 .flex {	  display: flex;	}	
 
@@ -116,3 +115,114 @@ section{
   background: #fff;
 }
 .iine-icon{margin: 0 0 0 auto;}
+
+
+//いいねランキング（カード内容）
+.card-title{
+  font-size: 18px;
+  text-align: center;
+}
+.card-subtitle{
+  text-align: center;
+}
+
+
+
+
+
+//いいねランキング
+
+
+.iine-ranking {
+ position: relative;
+  margin: 30px;
+  text-align: center;
+}
+
+.iine-ranking:before,
+.iine-ranking:after {
+  position: absolute;
+  z-index: 0;
+  bottom: -10px;
+  display: block;
+  content: '';
+  border: 1em solid #d90606;
+}
+
+.iine-ranking:before {
+  left: -30px;
+  border-left-width: 15px;
+  border-left-color: transparent;
+}
+
+.iine-ranking:after {
+  right: -30px;
+  border-right-width: 15px;
+  border-right-color: transparent;
+}
+
+.iine-ranking span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 1rem 2rem;
+  color: #fff;
+  background: #fa4141;
+}
+
+.iine-ranking span:before,
+.iine-ranking span:after {
+  position: absolute;
+  bottom: -10px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  content: '';
+  border-style: solid;
+  border-color: #b70505 transparent transparent transparent;
+}
+
+.iine-ranking span:before {
+  left: 0;
+  border-width: 10px 0 0 10px;
+}
+
+.iine-ranking span:after {
+  right: 0;
+  border-width: 10px 10px 0 0;
+}
+
+//使用言語検索
+.language-search{
+  position: relative;
+  padding: 1rem .5rem;
+  color: #000;
+  text-align: center;
+  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+ background-blend-mode: screen;
+}
+.language-search:before,
+.language-search:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  content: '';
+  border-radius: 2px;
+  
+}
+
+.language-search:before {
+  top: 0;
+}
+
+.language-search:after {
+  bottom: 0;
+}
+//
+
+.ranking-background{
+  background: rgba(245,244,232,1);
+  
+}

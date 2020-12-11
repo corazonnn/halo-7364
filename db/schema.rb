@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_083426) do
+ActiveRecord::Schema.define(version: 2020_12_10_094834) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "reply"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_083426) do
     t.string "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "option"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

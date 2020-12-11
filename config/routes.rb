@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   get 'chat-room' ,to: 'rooms#show'
   
+  get 'search' ,to: 'products#index'
+  
   resources :users, only: [:index, :show, :create,:edit,:update] 
    
   resources :products

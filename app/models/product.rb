@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   validates :detail, presence: true, length: { maximum: 255 }
   validates :period, presence: true, length: { maximum: 255 }
  
+ 
   #あとはimageについて書くだけ。それ以外はできた
   
   #中間テーブルをたくさん持っている
@@ -16,5 +17,5 @@ class Product < ApplicationRecord
   
   
   has_many :comments, dependent: :destroy
-  
+  has_many :liked_users, through: :goods, source: :user
 end
