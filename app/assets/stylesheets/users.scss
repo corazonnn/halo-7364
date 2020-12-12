@@ -30,18 +30,15 @@ z-index:100;
 
 #home{
   min-height: 100vh;
-  background-image:image-url('home.jpg')
+  background-image:image-url('signin-page.jpg')
 }
 
-.form-group,.first-message-signup,.second-message-signup{
+.first-message-signin{
   color:#fff;
-}
-.first-message-signup{
-  font-size: 2rem;
-}
-.second-message-signup{
-  font-size: 1.5rem;
-  padding-top:30px;
+  font-family: "Hannari";
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 //ここまで
 
@@ -105,8 +102,11 @@ z-index:100;
   overflow: hidden;
 }
 .card-user{
-  border-left:7px solid #08ffc8;
+  border-left:5px solid #08ffc8;
 }
 .small-comment{
   font-size: 14px;
 }
+
+//ユーザーが今まで作ってきたもの
+.table{background:#F5F7FA}

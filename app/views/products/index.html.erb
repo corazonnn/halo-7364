@@ -1,13 +1,14 @@
 
 <!--<div id="product-chart" class="big-bg">-->
-<div class="jumbotron mb-0">
-  <div class="container">
-    <h1 class="display-4">OUTPUT LIST</h1>
-    <p class="lead">小さな成功体験をみんなで共有しよう</p>
-  </div>
-</div>
+
 <article>
-  <p class="text-center mb-5 pt-3"><%= link_to('新規作成',new_product_path,{ class: "btn btn-primary"})  %></p>
+  <div class="jumbotron mb-0">
+    <div class="container">
+      <h1 class="display-4"><span class="title-font">OUTPUT LIST</span></h1>
+      <p class="lead">小さな成功体験をみんなで共有しよう</p>
+    </div>
+  </div>
+  <p class="text-center mb-5 pt-3"><%= link_to('新規作成',new_product_path,{ class: "btn btn-light"})  %></p>
   
   <div class="container">
     <div class="row">
@@ -41,8 +42,10 @@
                           <% end %>
                         </p>
                         <p class="text-language text-muted">
-                          <%= product.language %>
+                          
+                          <span class="badge badge-warning"><%= product.language %></span>
                         </p>
+                        
                         <div class="iine-icon">
                           <% if logged_in? %>
                            <!--もしいいねしてたら-->
@@ -98,7 +101,7 @@
       
       
       
-      <div class="col-md-5 offset-md-1 ranking-background">
+      <div class="col-md-5 offset-md-1">
 
         
         <h2 class="iine-ranking mt-1"><span>いいねランキング</span></h2>
@@ -116,70 +119,59 @@
         <% end %>
         
         
-        
-        
-        
-        
-        
-        <h2 class="language-search mt-4">
-          <%= form_with(url: search_path, method: :get, local: true) do |f| %>
-            <%= f.select :option, [["HTML&CSS","1"],["JavaScript","2"],["PHP","P3"],["Ruby","4"],["Python","5"],["Java","6"],["C++","7"],["C#","8"],["Swift","9"],["R","10"]], include_blank: "使用言語検索" %>
-  
-            <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
-              <span class="badge badge-light"><i class="fas fa-search fa-lg"></i></span>
-            <% end %>
-          <% end %>
-        </h2>
-        
-        
-        
-        <% if @searchs.present? %>
-          <% @searchs.each do |search| %>
-            <div class="col-md-12">
-              <div class="wrap">            <!-- 記事エリア -->
-                <section>
-                  <div class="flex">	        
-                    <% if search.user.image? %>
-                      <%= image_tag( search.user.image.url, class: 'icon-product-page') %>
-                    <% else %>
-                      <%= image_tag("default_icon.png", class: 'icon-product-page')   %>
-                    <% end %>   
-                    <h2>
-                      <%= link_to(user_path(search.user),class: "link_color") do %>
-                        <%= search.user.username %>
-                      <% end %>
-                    </h2>	        
-                    	        
-                    <p class="date"><%= search.created_at.strftime("%Y年%m月%d日")  %></p>	     
-                  </div>	      
-                  <div class="flex contents">	        
-                    <p class="text">
-                      <%= link_to(product_path(search),class: "link_color") do %>
-                        <%= search.title %>
-                      <% end %>
-                    </p>
-                    <p class="text-language text-muted">
-                      <%= search.language %>
-                    </p> 
-                  </div>	   
-                </section>
-              </div>
-            </div>
-          <% end %>
-          <div class="d-flex justify-content-center mt-3 mb-3"><%= paginate @searchs %></div>
-        <% else %>
-        なにもないっす！
-        <% end %> 
-        
-        
-        
-        
       
-        
-
-        
-        
-        
+        <div class="laguage-search-cover">
+          <h2 class="language-search mt-4">
+          <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+              <%= f.select :option, [["HTML&CSS","1"],["JavaScript","2"],["PHP","P3"],["Ruby","4"],["Python","5"],["Java","6"],["C++","7"],["C#","8"],["Swift","9"],["R","10"]], include_blank: "使用言語検索" %>
+    
+              <%= button_tag :type => "submit", :class =>"btn pt-0 pb-0 pr-0 pl-0" do %>
+                <span class="badge badge-light"><i class="fas fa-search fa-lg"></i></span>
+              <% end %>
+            <% end %>
+          </h2>
+  
+          
+          
+          <% if @searchs.present? %>
+            <% @searchs.each do |search| %>
+              <div class="col-md-12">
+                <div class="wrap">            <!-- 記事エリア -->
+                  <section>
+                    <div class="flex">	        
+                      <% if search.user.image? %>
+                        <%= image_tag( search.user.image.url, class: 'icon-product-page') %>
+                      <% else %>
+                        <%= image_tag("default_icon.png", class: 'icon-product-page')   %>
+                      <% end %>   
+                      <h2>
+                        <%= link_to(user_path(search.user),class: "link_color") do %>
+                          <%= search.user.username %>
+                        <% end %>
+                      </h2>	        
+                      	        
+                      <p class="date"><%= search.created_at.strftime("%Y年%m月%d日")  %></p>	     
+                    </div>	      
+                    <div class="flex contents">	        
+                      <p class="text">
+                        <%= link_to(product_path(search),class: "link_color") do %>
+                          <%= search.title %>
+                        <% end %>
+                      </p>
+                      <p class="text-language text-muted">
+                        <%= search.language %>
+                      </p> 
+                    </div>	   
+                  </section>
+                </div>
+              </div>
+            <% end %>
+            <div class="d-flex justify-content-center mt-3 mb-3"><%= paginate @searchs %></div>
+          <% else %>
+          <h6><span class="badge badge-light">まだ登録されていません</span></span></h6>
+          <% end %>
+        </div>
+         
         
       </div>
     </div>

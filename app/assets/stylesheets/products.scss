@@ -58,27 +58,7 @@
 }
 
 //新たなスタート
-.jumbotron{
-  /*background:#ff7878;グレーうそつくな*/
-  /*background:#363636;*/
-  text-align: center;
-  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
-}
-.jumbotron h1{
-  color:#fff;
-}
-.jumbotron p{
-  color:#fff;
-}
 
-.display-4, .lead{
-  color:#fff;
-  font-weight:  bold;
-}
-article{
-  background:#fff7f7;
-  min-height: 100vh;
-}
 .link_color{
   color:#000;
 }
@@ -196,10 +176,9 @@ section{
 .language-search{
   position: relative;
   padding: 1rem .5rem;
-  color: #000;
+  color: #fff;
   text-align: center;
-  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
- background-blend-mode: screen;
+  
 }
 .language-search:before,
 .language-search:after {
@@ -222,7 +201,5 @@ section{
 }
 //
 
-.ranking-background{
-  background: rgba(245,244,232,1);
-  
-}
+
+.laguage-search-cover{background:#fff7f7}
