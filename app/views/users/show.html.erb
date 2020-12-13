@@ -64,8 +64,40 @@
                 <p class="lead">今まで作ってきたもの</p>
               </div>
             </div>  
-            <!--<h1 class="mb-5 font-weight-bold">プロダクト一覧</h1>-->
-            <%= render 'layouts/product-list' ,user: @user %>
+            
+            
+               <!--<h1 class="mb-5 font-weight-bold">プロダクト一覧</h1>-->
+            <% if @user_product.any? %>
+              
+                <table class="table hannari">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">タイトル</th>
+                      <th scope="col">作成日</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--テーブルの数字を増やしたい-->
+                    <%  num=1 %>
+                    <% @user_product.each do |product| %>
+                      <tr>
+                        <th scope="row"><%= num %></th>
+                        <% num+=1 %>
+                        <td>
+                          <%= link_to product_path(product) do %>
+                            ［&nbsp;<%= product.title  %>&nbsp;］
+                          <% end %>
+                        </td>
+                        <td><%= product.created_at.strftime("%Y.%m/%d")  %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <div class="d-flex justify-content-center mt-3 mb-3"><%= paginate @user_product %></div>
+                    <!--そのユーザーのプロダクトのタイトル-->      
+            <% end %>
           </div>
       </div>
   </div>

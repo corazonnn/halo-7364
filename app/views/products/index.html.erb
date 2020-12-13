@@ -33,10 +33,10 @@
                           <% end %>
                         </h2>	        
                         	        
-                        <p class="date"><%= product.created_at.strftime("%Y年%m月%d日")  %></p>	     
+                        <p class="date"><%= product.created_at.strftime("%Y年%m/%d")  %></p>	     
                       </div>	      
                       <div class="flex contents">	        
-                        <p class="text">
+                        <p class="text hannari">
                           <%= link_to(product_path(product),class: "link_color") do %>
                             <%= product.title %>
                           <% end %>
@@ -108,9 +108,9 @@
         <% i=1 %>
         <% @rankings.each do |rank| %>
           <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li class="list-group-item d-flex justify-content-between align-items-center hannari">
               <%= link_to(product_path(rank),class: "link_color") do %>
-                <%= i %>位：&nbsp;<%= rank.user.username %>さんの『<%= rank.title %>』
+                <%= i %>位：&nbsp;<%= rank.user.username %>さんの［<%= rank.title %>］
               <% end %>
               <span class="badge badge-success badge-pill"><i class="fas fa-thumbs-up fa-lg"></i>&nbsp;&nbsp;<%= rank.goods.count  %></span>
             </li>
@@ -150,17 +150,17 @@
                         <% end %>
                       </h2>	        
                       	        
-                      <p class="date"><%= search.created_at.strftime("%Y年%m月%d日")  %></p>	     
+                      <p class="date"><%= search.created_at.strftime("%Y年%m/%d")  %></p>	     
                     </div>	      
                     <div class="flex contents">	        
-                      <p class="text">
+                      <p class="text hannari">
                         <%= link_to(product_path(search),class: "link_color") do %>
                           <%= search.title %>
                         <% end %>
                       </p>
                       <p class="text-language text-muted">
-                        <%= search.language %>
-                      </p> 
+                        <span class="badge badge-info"><%= search.language %></span>
+                      </p>
                     </div>	   
                   </section>
                 </div>

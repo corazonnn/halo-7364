@@ -1,17 +1,17 @@
 class SessionsController < ApplicationController
   def new
-    #データベースがないから特にやることはない
+    # データベースがないから特にやることはない
   end
 
   def create
-    #フォームから送られてきた情報でログインする
-    #まずは送られたデータをemailとpasswordに分ける
-    #わけたemailが今あるUserテーブルの中にあるのかifをつかう
-    #もしあればそれが送られたパスワードと一致するか確かめる。OKなら中に入れる
-    #そんなユーザはいないorパスワードが違う。→もう一度ログインフォームに送りつける
+    # フォームから送られてきた情報でログインする
+    # まずは送られたデータをemailとpasswordに分ける
+    # わけたemailが今あるUserテーブルの中にあるのかifをつかう
+    # もしあればそれが送られたパスワードと一致するか確かめる。OKなら中に入れる
+    # そんなユーザはいないorパスワードが違う。→もう一度ログインフォームに送りつける
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if login(email,password)
+    if login(email, password)
       flash[:success] = 'ログインに成功しました。'
       redirect_to root_url
     else
@@ -25,16 +25,15 @@ class SessionsController < ApplicationController
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
-
 end
 
 private
 
-def login(email,password)
+def login(email, password)
   @user = User.find_by(email: email)
   if @user && @user.authenticate(password)
-    
-    #session[:user_id]=@user_id　　　ここだ
+
+    # session[:user_id]=@user_id　　　ここだ
     session[:user_id] = @user.id
     true
   else

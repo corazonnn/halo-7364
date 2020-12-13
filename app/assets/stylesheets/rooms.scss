@@ -25,6 +25,7 @@
   background: #FFF;
   border: solid 3px #555;
   box-sizing: border-box;
+  word-break: break-all;
 }
 
 .balloon2-left:before {
@@ -54,3 +55,18 @@
   padding: 0;
 }
 
+.media-body1{width: 10%;}
+.media-body{width: 90%;}
+
+
+.form-wrapper-chat {
+  
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: 370px;
+  max-height: 230px;
+}
+
+.chatroom{
+  background: #fff7f7;
+}

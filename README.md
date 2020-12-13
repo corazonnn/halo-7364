@@ -1,24 +1,35 @@
-# README
+# アプリ名
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# アプリケーション概要
+プログラミング初学者を対象とした成果共有サービス.
 
-* Ruby version
+# なぜこのアプリケーションを作ろうと思ったのか
+実際に私自身がプログラミングの学習をしている際に他の勉強している人の進捗やどんなアウトプットをしているのかが気になったため。
 
-* System dependencies
+#  アプリケーション機能一覧
+プロダクトのCRUD機能
+Userの新規作成/編集機能
+プロダクトごとのコメント機能
+画像ファイルのアップロード機能
+ページネーション機能
+ログイン機能
+いいね機能
+いいねのランキング表示機能
+プロダクトの使用言語で検索機能
+チャット機能
+レスポンシブ対応
 
-* Configuration
 
-* Database creation
+# 使用している技術一覧
 
-* Database initialization
+開発言語：Ruby
+サーバーサイドフレームワーク：Ruby on Rails
+フロントエンド：HTML CSS Bootstrap
+インフラ：Heroku
+データベース・データストア：MySQL
+画像ファイルアップロード：CarrieWave,Cloudinary
+ログイン:session
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...

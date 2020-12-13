@@ -1,123 +1,100 @@
 class ProductsController < ApplicationController
-  
-  before_action :require_user_logged_in, only: [:create,:new,:update,:destroy,:show,:edit]
+  before_action :require_user_logged_in, only: %i[create new update destroy show edit]
 
   def create
     @product = current_user.products.build(product_params)
     if @product.save
-      flash[:success]="新規作成できました。"
+      flash[:success] = '新規作成できました。'
       redirect_to root_url
     else
-      flash[:danger]="作成できませんでした。"
+      flash[:danger] = '作成できませんでした。'
       render :new
     end
-  
-  
   end
 
   def new
     @product = current_user.products.build
   end
 
-  #本人確認はupdateやindexではいらないが、なにかデータを書き換える時に必要（destroy,edit）。
+  # 本人確認はupdateやindexではいらないが、なにかデータを書き換える時に必要（destroy,edit）。
   def edit
     @product = Product.find_by(id: params[:id])
-     unless @product.user == current_user
-        redirect_to root_path
-     end
-    #@product=current_user.products.find(params[:id])
-    
+    redirect_to root_path unless @product.user == current_user
+    # @product=current_user.products.find(params[:id])
   end
 
   def update
-    @product=current_user.products.find(params[:id])
+    @product = current_user.products.find(params[:id])
     if @product.update(product_params)
-      flash[:success] = "正常に更新されました"
+      flash[:success] = '正常に更新されました'
       redirect_to @product
     else
-      flash.now[:danger] = "更新に失敗しました"
+      flash.now[:danger] = '更新に失敗しました'
       render :edit
     end
-    
   end
 
   def destroy
-    @product=current_user.products.find_by(id: params[:id])
-    if current_user==@product.user
+    @product = current_user.products.find_by(id: params[:id])
+    if current_user == @product.user
       @product.destroy
-      flash[:success] = "正常に削除できました"
+      flash[:success] = '正常に削除できました'
       redirect_to root_url
 
     end
   end
 
-  #アプリを開いてまず初めにぶつけるところ
+  # アプリを開いてまず初めにぶつけるところ
   def index
     @products = Product.order(id: :desc).page(params[:page]).per(6)
-  #ランキング
-    @rankranks = Product.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
-    #このままだといいね 順で全てを表示することになってしまうからいいねの多い５つだけ表示する
+    # ランキング
+    @rankranks = Product.includes(:liked_users).sort { |a, b| b.liked_users.size <=> a.liked_users.size }
+    # このままだといいね 順で全てを表示することになってしまうからいいねの多い５つだけ表示する
     @rankings = @rankranks.first(5)
-    
-  #検索機能  
+
+    # 検索機能
     @product_language = params[:option]
     case @product_language
-    
-    when "1" then
-      @searchs = Product.where(language: "HTML&CSS").order(id: :desc).page(params[:page]).per(4)
-    when "2" then
-      @searchs = Product.where(language: "JavaScript").order(id: :desc).page(params[:page]).per(4)
-    when "3" then
-      @searchs = Product.where(language: "PHP").order(id: :desc).page(params[:page]).per(4)
-    when "4" then
-      @searchs = Product.where(language: "Ruby").order(id: :desc).page(params[:page]).per(4)
-    when "5" then
-      @searchs = Product.where(language: "Python").order(id: :desc).page(params[:page]).per(4)
-    when "6" then
-      @searchs = Product.where(language: "Java").order(id: :desc).page(params[:page]).per(4)
-    when "7" then
-      @searchs = Product.where(language: "C++").order(id: :desc).page(params[:page]).per(4)
-    when "8" then
-      @searchs = Product.where(language: "C#").order(id: :desc).page(params[:page]).per(4)
-    when "9" then
-      @searchs = Product.where(language: "Swift").order(id: :desc).page(params[:page]).per(4)
-    when "10" then
-      @searchs = Product.where(language: "R").order(id: :desc).page(params[:page]).per(4)
-    else
-      
+
+    when '1'
+      @searchs = Product.where(language: 'HTML&CSS').order(id: :desc).page(params[:page]).per(4)
+    when '2'
+      @searchs = Product.where(language: 'JavaScript').order(id: :desc).page(params[:page]).per(4)
+    when '3'
+      @searchs = Product.where(language: 'PHP').order(id: :desc).page(params[:page]).per(4)
+    when '4'
+      @searchs = Product.where(language: 'Ruby').order(id: :desc).page(params[:page]).per(4)
+    when '5'
+      @searchs = Product.where(language: 'Python').order(id: :desc).page(params[:page]).per(4)
+    when '6'
+      @searchs = Product.where(language: 'Java').order(id: :desc).page(params[:page]).per(4)
+    when '7'
+      @searchs = Product.where(language: 'C++').order(id: :desc).page(params[:page]).per(4)
+    when '8'
+      @searchs = Product.where(language: 'C#').order(id: :desc).page(params[:page]).per(4)
+    when '9'
+      @searchs = Product.where(language: 'Swift').order(id: :desc).page(params[:page]).per(4)
+    when '10'
+      @searchs = Product.where(language: 'R').order(id: :desc).page(params[:page]).per(4)
     end
-    
   end
 
   def show
     @product = Product.find(params[:id])
-    
-    #このプロダクト詳細ページでコメントの作成、表示を行うから全コメントの取得、コメントモデルのインスタンスの生成
+
+    # このプロダクト詳細ページでコメントの作成、表示を行うから全コメントの取得、コメントモデルのインスタンスの生成
     @comments = @product.comments.order(id: :desc).page(params[:page]).per(6)
     @comment = current_user.comments.new
   end
-  
-  
-  
-  
-  
-  
+
   def search
-    #フォームでは使用言語の検索に:optionフィールドを用いるからparams[:option]でいい
-    
+    # フォームでは使用言語の検索に:optionフィールドを用いるからparams[:option]でいい
   end
-  
-  
-  
-  
-  
-  
-  
+
   private
 
-  #ストロングパラメータ
+  # ストロングパラメータ
   def product_params
-    params.require(:product).permit(:title,:language,:detail,:period,:option)
+    params.require(:product).permit(:title, :language, :detail, :period, :option)
   end
-  
 end

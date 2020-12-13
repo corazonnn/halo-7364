@@ -29,12 +29,12 @@
                   <% end %>
                   
                   <div class="media-body ml-2">
-                    <h6 class="username mt-0">
+                    <h6 class="sans username mt-0">
                       <%= link_to(user_path(user),class: "link_color") do %>
                         <%= truncate(user.username, length: 15) %>
                       <% end %>
                     </h6>
-                    <small class="mb-2 text-muted"><%= truncate(user.language, length: 15) %></small>
+                    <small class="sans mb-2 text-muted"><%= truncate(user.language, length: 15) %></small>
                     
                   </div>
                 </div>
