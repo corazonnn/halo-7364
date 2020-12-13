@@ -77,5 +77,6 @@ end
 
 gem 'jquery-rails'
 
+# インストールしたけどいまいち使いこなせていない
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
