@@ -1,5 +1,6 @@
+#ちょっと編集
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: %i[show edit]
+  before_action :require_user_logged_in, only: %i[show edit update]
   # userを一覧表示する
   def index
     @users = User.order(id: :desc).page(params[:page]).per(12)
@@ -15,13 +16,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    # 明日はここから！登録ができない！！！！→できた！！！
     @user = User.new(user_params)
     # 最初はデフォルトのアイコンを入れておく
     # できなかった涙涙涙@user.image="default_icon.png"
     if @user.save
       flash[:success] = 'アカウント登録に成功しました。'
-      redirect_to @user
+      redirect_to root_url
     else
       flash.now[:danger] = 'アカウント登録に失敗しました。'
       render :new
@@ -35,12 +35,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:success] = 'プロフィールは更新されました'
-      redirect_to @user
+    if @user == current_user
+      if @user.update(user_params)
+        flash[:success] = 'プロフィールは更新されました'
+        redirect_to @user
+      else
+        flash.now[:danger] = 'プロフィールは更新できませんでした'
+        render :edit
+      end
     else
-      flash.now[:danger] = 'プロフィールは更新できませんでした'
-      render :edit
+      redirect_to root_path
     end
   end
 
