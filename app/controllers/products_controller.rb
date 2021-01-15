@@ -24,23 +24,35 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = current_user.products.find(params[:id])
-    if @product.update(product_params)
-      flash[:success] = '正常に更新されました'
-      redirect_to @product
+    #@product = current_user.products.find(params[:id])元々これだったけどrspecやってて下のに変えた
+    @product = Product.find(params[:id])
+    if @product.user == current_user
+      if @product.update(product_params)
+        flash[:success] = '正常に更新されました'
+        redirect_to @product
+      else
+        flash.now[:danger] = '更新に失敗しました'
+        render :edit
+      end
     else
-      flash.now[:danger] = '更新に失敗しました'
-      render :edit
+      redirect_to root_path
     end
   end
 
   def destroy
-    @product = current_user.products.find_by(id: params[:id])
+    #@product = current_user.products.find_by(id: params[:id])
+    #最初は上だったけど、これだとrequest specのテストの時に[他のユーザーがログインして他の人の投稿を削除するテスト]が通らないから以下のようにした
+    @product = Product.find_by(id: params[:id])
     if current_user == @product.user
-      @product.destroy
-      flash[:success] = '正常に削除できました'
-      redirect_to root_url
-
+      if @product.destroy
+        flash[:success] = '正常に削除できました'
+        redirect_to root_path
+      else
+        flash.now[:danger] = '削除に失敗しました'
+        render :show
+      end
+    else
+      redirect_to root_path
     end
   end
 
@@ -85,10 +97,6 @@ class ProductsController < ApplicationController
     # このプロダクト詳細ページでコメントの作成、表示を行うから全コメントの取得、コメントモデルのインスタンスの生成
     @comments = @product.comments.order(id: :desc).page(params[:page]).per(6)
     @comment = current_user.comments.new
-  end
-
-  def search
-    # フォームでは使用言語の検索に:optionフィールドを用いるからparams[:option]でいい
   end
 
   private

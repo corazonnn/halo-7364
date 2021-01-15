@@ -11,7 +11,6 @@ class Product < ApplicationRecord
   # 中間テーブルをたくさん持っている
   # dependent: :destroyをつけると「いいね」をもらったものも消せる
   has_many :goods, dependent: :destroy
-
   has_many :comments, dependent: :destroy
   has_many :liked_users, through: :goods, source: :user
 end
