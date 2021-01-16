@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  #うまく更新（update）や削除ができなかったらfind_by(id: params[:id])がfind_by(params[:id])になってるかも
   before_action :require_user_logged_in, only: %i[create new update destroy show edit]
 
   def create
@@ -24,7 +25,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    #@product = current_user.products.find(params[:id])元々これだったけどrspecやってて下のに変えた
     @product = Product.find(params[:id])
     if @product.user == current_user
       if @product.update(product_params)
@@ -40,8 +40,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    #@product = current_user.products.find_by(id: params[:id])
-    #最初は上だったけど、これだとrequest specのテストの時に[他のユーザーがログインして他の人の投稿を削除するテスト]が通らないから以下のようにした
     @product = Product.find_by(id: params[:id])
     if current_user == @product.user
       if @product.destroy
@@ -56,7 +54,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  # アプリを開いてまず初めにぶつけるところ
+  #root_path
   def index
     @products = Product.order(id: :desc).page(params[:page]).per(6)
     # ランキング

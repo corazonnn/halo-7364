@@ -1,9 +1,1 @@
-<!--logged_in?が反応してない？なんで-->
-<% if logged_in? %>
-  <%= render 'layouts/userlist' %>
-  <!--<div class="d-flex justify-content-center">「<%= current_user.username %>」さんがログイン中</div>-->
-  
-<% else %>
-  
-  <%= render 'layouts/userlist' %>
-<% end %>
+<%= render 'layouts/userlist' %>
