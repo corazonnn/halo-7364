@@ -1,0 +1,90 @@
+<!--管理者-->
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6 text-center">
+        <div class="mb-4 mt-3">
+          <div class="container">
+            <h1 class="display-4 text-dark">ユーザー情報</h1>
+          </div>
+        </div>
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">名前</th>
+              <th scope="col">使用言語</th>
+              <th scope="col">自己紹介</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              
+              <td>
+                <%= link_to(user_path(@product.user)) do %>
+                  <%= truncate(@product.user.username, length: 15) %>
+                <% end %>
+              </td>
+            	<td><%= truncate(@product.user.language, length: 15) %></td>
+            	<td><%= truncate(@product.user.introduction, length: 15) %></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+       
+        
+        <div class=" mt-0 mb-4 p-0 col-sm-6 text-center ">
+          <div class="mb-4 mt-3">
+            <div class="container">
+              <h1 class="display-4 text-dark">プロダクト情報</h1>
+            </div>
+          </div>
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">タイトル</th>
+                <th scope="col">使用言語</th>
+                <th scope="col">作成期間</th>
+                <th scope="col">概要</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td>
+                  <%= link_to(product_path(@product)) do %>
+                    <%= @product.title %>
+                  <% end %>
+                </td>
+              	<td><%= truncate(@product.language, length: 15) %></td>
+              	<td><%= @product.period  %></td>
+              	<td><%=safe_join(@product.detail.split("\n"),tag(:br))%></td>
+              </tr>
+              
+            </tbody>
+          </table>
+            
+              <div class="card-footer  text-muted">
+                <div class="d-flex justify-content-around">
+                  <h5 class="mb-0">
+                    <%= link_to(admin_product_path(@product), method: :delete, data: { confirm: '本当に削除しますか？' } , class: "btn  pt-1 pb-1 pr-3 pl-3") do %>
+                      <h5 class="pb-0 mb-0" id="product-show-destroy"><i class="fas fa-trash-alt"></i></h5>
+                      <small class="pt-0 mt-0" id="product-show-destroy">削除</small>
+                    <% end %>
+                  </h5>
+                  
+                  <h5  class="mb-0">
+                    <%= link_to(admin_products_path, { class: " btn pt-1 pb-1 pr-2 pl-2"}) do %>
+                      <h5 class="pb-0 mb-0"  id="product-show-index"><i class="fas fa-redo"></i></h5>
+                      <small class="pt-0 mt-0"  id="product-show-index">一覧に戻る</small>
+                    <% end %>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+  </div>
+</div>
+

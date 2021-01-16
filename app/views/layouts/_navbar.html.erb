@@ -23,8 +23,12 @@
               <% if logged_in? %>
                 <ul class="navbar-nav mr-3">
                   <li class="p-2 nav-item"><%= link_to(logout_path, method: :delete, class: 'nav-link') do %><i class="fas fa-running fa-lg"></i>LOGOUT<% end %></li>
+                  <% if current_user.admin? %>
+                    <ul class="p-2 navbar-nav mr-3">
+                      <li><%= link_to(admin_products_path, class: 'nav-link') do %>管理者専用<% end %></li>
+                    </ul>
+                  <% end %>
                 </ul>
-                
               <% else %>
                 <div>
                   <ul class="p-2 navbar-nav mr-3">
